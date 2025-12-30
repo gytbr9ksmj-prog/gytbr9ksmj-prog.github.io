@@ -2687,38 +2687,47 @@
             display: none;
             margin-top: 20px;
         }
-        .zhejiang-input-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        
+        .zhejiang-input-row {
+            display: flex;
             gap: 15px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
+        
         .zhejiang-form-group {
-            margin-bottom: 15px;
+            flex: 1;
+            min-width: 150px;
+            margin-bottom: 0;
         }
+        
         .zhejiang-checkbox-group {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin-top: 8px;
         }
+        
         .zhejiang-checkbox-item {
             display: flex;
             align-items: center;
             margin-right: 0;
             flex: 1;
-            min-width: 120px;
+            min-width: 140px;
         }
+        
         .zhejiang-checkbox-item input {
             width: auto;
             margin-right: 6px;
         }
+        
         .zhejiang-checkbox-item label {
             font-weight: normal;
             margin-bottom: 0;
             white-space: nowrap;
             font-size: 13px;
         }
+        
         .zhejiang-result-card {
             background-color: white;
             border-radius: 6px;
@@ -2727,38 +2736,76 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             border-top: 4px solid #3498db;
         }
+        
         .zhejiang-result-card.urgent {
             border-top-color: #e74c3c;
             background-color: #fff5f5;
         }
+        
         .zhejiang-contact-list {
             list-style-type: none;
             margin-top: 10px;
         }
+        
         .zhejiang-contact-list li {
             padding: 10px 12px;
             margin-bottom: 8px;
             background-color: #f8f9fa;
             border-radius: 5px;
             border-left: 4px solid #3498db;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
+        
         .zhejiang-contact-list li.important {
             border-left-color: #e74c3c;
             background-color: #fff0f0;
         }
+        
         .zhejiang-contact-list li.step {
             border-left-color: #2ecc71;
             background-color: #f0fff4;
         }
+        
+        .zhejiang-contact-item {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .zhejiang-contact-name {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+        
+        .zhejiang-contact-phone {
+            color: #3498db;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-left: 10px;
+        }
+        
+        .zhejiang-contact-region {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-left: 5px;
+        }
+        
+        .zhejiang-contact-priority {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: #e74c3c;
+            margin-left: 10px;
+            background-color: #ffeaea;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
         .zhejiang-upgrade-path {
             margin: 15px 0;
             padding: 12px;
             background-color: #f8f9fa;
             border-radius: 6px;
         }
+        
         .zhejiang-upgrade-step {
             display: flex;
             align-items: center;
@@ -2766,11 +2813,13 @@
             padding-bottom: 10px;
             border-bottom: 1px dashed #ddd;
         }
+        
         .zhejiang-upgrade-step:last-child {
             border-bottom: none;
             margin-bottom: 0;
             padding-bottom: 0;
         }
+        
         .zhejiang-step-number {
             background-color: #3498db;
             color: white;
@@ -2784,6 +2833,30 @@
             margin-right: 12px;
             flex-shrink: 0;
             font-size: 0.9rem;
+        }
+        
+        .zhejiang-branch-selector {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff8e1;
+            border-radius: 6px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .zhejiang-branch-selector-title {
+            font-weight: bold;
+            color: #ff9800;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .zhejiang-instruction {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 10px;
+            margin: 12px 0;
+            border-radius: 6px;
+            font-size: 13px;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -2900,7 +2973,7 @@
             <div class="form-section">
                 <h2><i class="fas fa-headset"></i> 浙江分公司催办升级规则</h2>
                 
-                <div class="zhejiang-input-section">
+                <div class="zhejiang-input-row">
                     <div class="zhejiang-form-group">
                         <label for="zhejiangTicketType"><i class="fas fa-ticket-alt"></i> 工单类型</label>
                         <select id="zhejiangTicketType">
@@ -2922,36 +2995,15 @@
                         <label for="zhejiangComplaintReason"><i class="fas fa-exclamation-circle"></i> 投诉原因</label>
                         <select id="zhejiangComplaintReason">
                             <option value="">-- 请选择投诉原因 --</option>
-                            <option value="underwriting">承保</option>
-                            <option value="preservation">保全</option>
-                            <option value="sales">销售</option>
+                            <option value="underwriting">承保/保全/销售/其他</option>
                             <option value="claims">理赔</option>
-                            <option value="other">其他</option>
                         </select>
                     </div>
                     
                     <div class="zhejiang-form-group">
                         <label for="zhejiangInsuranceCode"><i class="fas fa-file-medical"></i> 险种代码</label>
                         <select id="zhejiangInsuranceCode">
-                            <option value="">-- 请选择险种代码 --</option>
-                            <optgroup label="特定险种">
-                                <option value="1003">1003</option>
-                                <option value="1066">1066</option>
-                                <option value="H30">H30</option>
-                                <option value="1039">1039</option>
-                                <option value="H27">H27</option>
-                                <option value="H31">H31</option>
-                                <option value="1125">1125</option>
-                                <option value="1178">1178</option>
-                                <option value="1715">1715</option>
-                                <option value="1033">1033</option>
-                                <option value="1107">1107</option>
-                                <option value="1054">1054</option>
-                                <option value="1257">1257</option>
-                            </optgroup>
-                            <optgroup label="其他险种">
-                                <option value="other">其他险种</option>
-                            </optgroup>
+                            <option value="">-- 请先选择工单类型和投诉原因 --</option>
                         </select>
                     </div>
                     
@@ -2959,6 +3011,15 @@
                         <label for="zhejiangFollowUpCount"><i class="fas fa-phone-volume"></i> 催办次数</label>
                         <input type="number" id="zhejiangFollowUpCount" min="0" value="0" placeholder="请输入催办次数">
                     </div>
+                </div>
+                
+                <!-- 三级分公司选择器（仅当勾选了投诉工单且险种代码为车险等其他时显示） -->
+                <div id="zhejiangBranchSelector" class="zhejiang-branch-selector" style="display: none;">
+                    <div class="zhejiang-branch-selector-title">请选择三级分公司</div>
+                    <select id="zhejiangBranchSelect">
+                        <option value="">-- 请选择三级分公司 --</option>
+                        <!-- 选项将动态添加 -->
+                    </select>
                 </div>
                 
                 <div class="form-group special-rule">
@@ -3005,7 +3066,7 @@
         // 联系人数据
         const contactData = {
             complaint: {
-                // 投诉工单 - 承保/保全/销售/其他 + 其他险种
+                // 投诉工单 - 承保/保全/销售/其他 + 其他险种（车险等其他）
                 "underwriting-other": {
                     thirdParty: [
                         { name: "王燕", phone: "15397177100", region: "杭州" },
@@ -3047,7 +3108,7 @@
                     departmentHead: { name: "武凡琪", phone: "0571-28029360 / 13239590688" },
                     分管总: { name: "吴琳炜", phone: "0571-28869906 / 18617055992" }
                 },
-                // 投诉工单 - 理赔 + 其他险种
+                // 投诉工单 - 理赔 + 其他险种（车险等其他）
                 "claims-other": {
                     thirdParty: [
                         { name: "王燕", phone: "15397177100", region: "杭州" },
@@ -3072,7 +3133,7 @@
                 }
             },
             nonComplaint: {
-                // 非投诉工单 - 承保/保全/销售/其他 + 特定险种 (1033, 1066, H30, 1039, H27, H31, 1257)
+                // 非投诉工单 - 承保/保全/销售/其他 + 特定险种
                 "underwriting-specific": {
                     thirdParty: [],
                     branch: [
@@ -3081,9 +3142,22 @@
                     departmentHead: { name: "王宝珠", phone: "0571-28007627 / 13269678359" },
                     分管总: { name: "吴琳炜", phone: "0571-28869906 / 18617055992" }
                 },
-                // 非投诉工单 - 承保/保全/销售/其他 + 其他险种
+                // 非投诉工单 - 承保/保全/销售/其他 + 其他险种（车险等其他）
                 "underwriting-other": {
-                    thirdParty: [],
+                    thirdParty: [
+                        { name: "王燕", phone: "15397177100", region: "杭州" },
+                        { name: "唐文超", phone: "13588279126", region: "萧山" },
+                        { name: "黄升杰", phone: "13605708352", region: "临安" },
+                        { name: "刘露泽", phone: "18667910255", region: "绍兴" },
+                        { name: "杨晓声", phone: "15558877722", region: "温州" },
+                        { name: "吕俊", phone: "18670287930", region: "金华" },
+                        { name: "赵彬", phone: "15513497773", region: "丽水" },
+                        { name: "沈筱贤", phone: "13867308313", region: "嘉兴" },
+                        { name: "袁瑞昌", phone: "18006650307", region: "舟山" },
+                        { name: "赵云良", phone: "13357124422", region: "湖州" },
+                        { name: "司秋萍", phone: "18505709266", region: "衢州" },
+                        { name: "陈玉良", phone: "13705736901", region: "台州" }
+                    ],
                     branch: [
                         { name: "章莉", phone: "0571-28869956 / 13625712656", priority: 1 },
                         { name: "沈雪", phone: "0571-28869956 / 13957173510", priority: 2 }
@@ -3101,9 +3175,22 @@
                     departmentHead: { name: "武凡琪", phone: "0571-28029360 / 13239590688" },
                     分管总: { name: "吴琳炜", phone: "0571-28869906 / 18617055992" }
                 },
-                // 非投诉工单 - 理赔 + 其他险种
+                // 非投诉工单 - 理赔 + 其他险种（车险等其他）
                 "claims-other": {
-                    thirdParty: [],
+                    thirdParty: [
+                        { name: "王燕", phone: "15397177100", region: "杭州" },
+                        { name: "唐文超", phone: "13588279126", region: "萧山" },
+                        { name: "黄升杰", phone: "13605708352", region: "临安" },
+                        { name: "刘露泽", phone: "18667910255", region: "绍兴" },
+                        { name: "杨晓声", phone: "15558877722", region: "温州" },
+                        { name: "吕俊", phone: "18670287930", region: "金华" },
+                        { name: "赵彬", phone: "15513497773", region: "丽水" },
+                        { name: "沈筱贤", phone: "13867308313", region: "嘉兴" },
+                        { name: "袁瑞昌", phone: "18006650307", region: "舟山" },
+                        { name: "赵云良", phone: "13357124422", region: "湖州" },
+                        { name: "司秋萍", phone: "18505709266", region: "衢州" },
+                        { name: "陈玉良", phone: "13705736901", region: "台州" }
+                    ],
                     branch: [
                         { name: "章莉", phone: "0571-28869956 / 13625712656", priority: 1 },
                         { name: "沈雪", phone: "0571-28869956 / 13957173510", priority: 2 }
@@ -3114,15 +3201,29 @@
             }
         };
         
-        // 特定险种代码列表
-        const specificInsuranceCodes = {
+        // 险种代码配置
+        const insuranceCodeConfig = {
+            // 投诉工单
             complaint: {
-                "underwriting-specific": ["1003", "1066", "H30", "1039", "H27", "H31"],
-                "claims-specific": ["1125", "1178", "1715", "1039", "1033", "1107", "1054"]
+                // 承保/保全/销售/其他
+                underwriting: [
+                    "1003", "1066", "H30", "1039", "H27", "H31", "1257", "车险等其他"
+                ],
+                // 理赔
+                claims: [
+                    "1125", "1178", "1715", "1039", "1033", "1107", "1054", "车险等其他"
+                ]
             },
-            nonComplaint: {
-                "underwriting-specific": ["1033", "1066", "H30", "1039", "H27", "H31", "1257"],
-                "claims-specific": ["1125", "1178", "1715", "1039", "1033", "1107", "1054"]
+            // 非投诉工单
+            "non-complaint": {
+                // 承保/保全/销售/其他
+                underwriting: [
+                    "1003", "1066", "H30", "1039", "H27", "H31", "1257", "车险等其他"
+                ],
+                // 理赔
+                claims: [
+                    "1125", "1178", "1715", "1039", "1033", "1107", "1054", "车险等其他"
+                ]
             }
         };
 
@@ -3546,14 +3647,17 @@
             const extremeEventEl = document.getElementById('zhejiangExtremeEvent');
             const mediaHotlineEl = document.getElementById('zhejiangMediaHotline');
             const petitionEl = document.getElementById('zhejiangPetition');
+            const branchSelector = document.getElementById('zhejiangBranchSelector');
+            const branchSelect = document.getElementById('zhejiangBranchSelect');
             const specialRuleSection = document.getElementById('zhejiangSpecialRuleSection');
             const resultSection = document.getElementById('zhejiangResultSection');
             
-            // 获取当前选中的联系人数据
+            // 获取当前的联系人数据（基于选择的分公司）
             function getContactData() {
                 const ticketType = ticketTypeEl.value;
                 const complaintReason = complaintReasonEl.value;
                 const insuranceCode = insuranceCodeEl.value;
+                const selectedBranch = branchSelect.value;
                 
                 if (!ticketType || !complaintReason || !insuranceCode) {
                     return null;
@@ -3561,29 +3665,117 @@
                 
                 let contactKey = '';
                 
+                // 确定是否是特定险种
+                const isSpecificCode = (insuranceCode !== 'other');
+                
                 if (ticketType === 'complaint') {
                     if (complaintReason === 'claims') {
                         // 理赔相关
-                        const isSpecificCode = specificInsuranceCodes.complaint["claims-specific"].includes(insuranceCode);
                         contactKey = isSpecificCode ? 'claims-specific' : 'claims-other';
                     } else {
                         // 承保/保全/销售/其他
-                        const isSpecificCode = specificInsuranceCodes.complaint["underwriting-specific"].includes(insuranceCode);
                         contactKey = isSpecificCode ? 'underwriting-specific' : 'underwriting-other';
                     }
-                    return contactData.complaint[contactKey];
+                    
+                    // 获取基础联系人数据
+                    const baseData = contactData.complaint[contactKey];
+                    
+                    // 如果是车险等其他险种，并且选择了具体分公司，则过滤联系人
+                    if (insuranceCode === 'other' && selectedBranch && baseData.thirdParty && baseData.thirdParty.length > 0) {
+                        const filteredThirdParty = baseData.thirdParty.filter(contact => contact.region === selectedBranch);
+                        return {
+                            ...baseData,
+                            thirdParty: filteredThirdParty.length > 0 ? filteredThirdParty : baseData.thirdParty
+                        };
+                    }
+                    
+                    return baseData;
                 } else {
                     // 非投诉工单
                     if (complaintReason === 'claims') {
                         // 理赔相关
-                        const isSpecificCode = specificInsuranceCodes.nonComplaint["claims-specific"].includes(insuranceCode);
                         contactKey = isSpecificCode ? 'claims-specific' : 'claims-other';
                     } else {
                         // 承保/保全/销售/其他
-                        const isSpecificCode = specificInsuranceCodes.nonComplaint["underwriting-specific"].includes(insuranceCode);
                         contactKey = isSpecificCode ? 'underwriting-specific' : 'underwriting-other';
                     }
-                    return contactData.nonComplaint[contactKey];
+                    
+                    // 获取基础联系人数据
+                    const baseData = contactData.nonComplaint[contactKey];
+                    
+                    // 如果是车险等其他险种，并且选择了具体分公司，则过滤联系人
+                    if (insuranceCode === 'other' && selectedBranch && baseData.thirdParty && baseData.thirdParty.length > 0) {
+                        const filteredThirdParty = baseData.thirdParty.filter(contact => contact.region === selectedBranch);
+                        return {
+                            ...baseData,
+                            thirdParty: filteredThirdParty.length > 0 ? filteredThirdParty : baseData.thirdParty
+                        };
+                    }
+                    
+                    return baseData;
+                }
+            }
+            
+            // 更新三级分公司选择器
+            function updateBranchSelector() {
+                const ticketType = ticketTypeEl.value;
+                const complaintReason = complaintReasonEl.value;
+                const insuranceCode = insuranceCodeEl.value;
+                
+                // 清空现有选项
+                branchSelect.innerHTML = '<option value="">-- 请选择三级分公司 --</option>';
+                
+                // 检查是否需要显示分公司选择器
+                // 仅当：1. 工单类型为投诉工单 2. 险种代码为车险等其他（other）
+                if (ticketType === 'complaint' && insuranceCode === 'other' && complaintReason) {
+                    // 显示分公司选择器
+                    branchSelector.style.display = 'block';
+                    
+                    // 获取当前的联系人数据以获取地区列表
+                    const contactKey = complaintReason === 'claims' ? 'claims-other' : 'underwriting-other';
+                    const contactGroup = contactData.complaint[contactKey];
+                    
+                    if (contactGroup && contactGroup.thirdParty && contactGroup.thirdParty.length > 0) {
+                        // 添加地区选项
+                        const regions = [...new Set(contactGroup.thirdParty.map(contact => contact.region))];
+                        regions.forEach(region => {
+                            const option = document.createElement('option');
+                            option.value = region;
+                            option.textContent = region;
+                            branchSelect.appendChild(option);
+                        });
+                    }
+                } else {
+                    // 隐藏分公司选择器
+                    branchSelector.style.display = 'none';
+                    branchSelect.value = '';
+                }
+            }
+            
+            // 更新险种代码选项
+            function updateInsuranceCodeOptions() {
+                const ticketType = ticketTypeEl.value;
+                const complaintReason = complaintReasonEl.value;
+                
+                // 清空现有选项
+                insuranceCodeEl.innerHTML = '<option value="">-- 请选择险种代码 --</option>';
+                
+                // 如果工单类型或投诉原因未选择，不显示选项
+                if (!ticketType || !complaintReason) {
+                    return;
+                }
+                
+                // 获取对应的险种代码列表
+                const insuranceCodes = insuranceCodeConfig[ticketType][complaintReason];
+                
+                if (insuranceCodes && insuranceCodes.length > 0) {
+                    // 添加选项
+                    insuranceCodes.forEach(code => {
+                        const option = document.createElement('option');
+                        option.value = code === '车险等其他' ? 'other' : code;
+                        option.textContent = code;
+                        insuranceCodeEl.appendChild(option);
+                    });
                 }
             }
             
@@ -3630,15 +3822,13 @@
                                 <div class="step-contact">
                     `;
                     
+                    // 显示所有三级机构联系人
                     contactGroup.thirdParty.forEach((contact, index) => {
-                        if (index < 3) { // 只显示前3个作为示例
-                            specialRuleHTML += `${contact.name}（${contact.region}）：${contact.phone}<br>`;
+                        specialRuleHTML += `${contact.name}（${contact.region}）：${contact.phone}`;
+                        if (index < contactGroup.thirdParty.length - 1) {
+                            specialRuleHTML += '<br>';
                         }
                     });
-                    
-                    if (contactGroup.thirdParty.length > 3) {
-                        specialRuleHTML += `等${contactGroup.thirdParty.length}位联系人`;
-                    }
                     
                     specialRuleHTML += `
                                 </div>
@@ -3792,15 +3982,27 @@
                         
                         resultHTML += `
                             <li ${isImportant ? 'class="important"' : ''}>
-                                <div>
-                                    <span class="contact-name">${contact.name}${regionInfo}</span>
-                                    ${priorityInfo ? `<div style="font-size: 0.85rem; color: #e74c3c; margin-top:2px;">${priorityInfo}</div>` : ''}
+                                <div class="zhejiang-contact-item">
+                                    <span class="zhejiang-contact-name">${contact.name}</span>
+                                    ${regionInfo ? `<span class="zhejiang-contact-region">${regionInfo}</span>` : ''}
+                                    <span class="zhejiang-contact-phone">${contact.phone}</span>
+                                    ${priorityInfo ? `<span class="zhejiang-contact-priority">${priorityInfo}</span>` : ''}
                                 </div>
-                                <div class="contact-phone">${contact.phone}</div>
                             </li>
                         `;
                     });
                     resultHTML += `</ul>`;
+                }
+                
+                // 添加非特殊规则的说明
+                if (!hasSpecialRule) {
+                    resultHTML += `
+                        <div class="zhejiang-instruction">
+                            <p><strong>说明：</strong></p>
+                            <p>1. 未接通工单备注无需继续升级</p>
+                            <p>2. 若客户于同一天内多次来电催办，且符合客服电话外呼催办时，则客服在当天内仅升级催办1次，无需在当天内重复外呼催办，但需在工单中备注客户来电诉求。</p>
+                        </div>
+                    `;
                 }
                 
                 // 添加备注信息
@@ -3832,18 +4034,31 @@
                 updateRegularResultSection();
             }
             
+            // 更新险种代码并更新结果
+            function updateInsuranceCodeAndResults() {
+                updateInsuranceCodeOptions();
+                updateBranchSelector();
+                updateAllResults();
+            }
+            
             // 监听所有输入变化
-            ticketTypeEl.addEventListener('change', updateAllResults);
+            ticketTypeEl.addEventListener('change', updateInsuranceCodeAndResults);
             ticketStatusEl.addEventListener('change', updateAllResults);
-            complaintReasonEl.addEventListener('change', updateAllResults);
-            insuranceCodeEl.addEventListener('change', updateAllResults);
+            complaintReasonEl.addEventListener('change', updateInsuranceCodeAndResults);
+            insuranceCodeEl.addEventListener('change', function() {
+                updateBranchSelector();
+                updateAllResults();
+            });
             followUpCountEl.addEventListener('input', updateAllResults);
             sameDayReplyEl.addEventListener('change', updateAllResults);
             extremeEventEl.addEventListener('change', updateAllResults);
             mediaHotlineEl.addEventListener('change', updateAllResults);
             petitionEl.addEventListener('change', updateAllResults);
+            branchSelect.addEventListener('change', updateAllResults);
             
             // 初始化显示
+            updateInsuranceCodeOptions();
+            updateBranchSelector();
             updateAllResults();
         }
     </script>

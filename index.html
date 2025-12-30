@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车险投保流程判断工具</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.4;
+            padding: 20px;
+            position: relative;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: relative;
+        }
+        .version {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #666;
+            font-size: 12px;
+        }
+        h1 {
+            text-align: center;
+            color: #1e88e5;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3e3e3;
+            font-size: 24px;
+        }
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 10px;
+            background: #f0f7ff;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border: 1px solid #d0e5ff;
+        }
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .breadcrumb-item a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #2c3e50;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 180px;
+        }
+        .breadcrumb-item a:hover {
+            background: #34495e;
+        }
+        .breadcrumb-solution {
+            background: #27ae60 !important;
+            white-space: normal !important;
+            max-width: none !important;
+        }
+        .breadcrumb-separator {
+            margin: 0 3px;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .question-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #1e88e5;
+        }
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #1565c0;
+            font-size: 18px;
+        }
+        .options-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: #f5f7fa;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #ddd;
+            font-size: 15px;
+        }
+        .option-label:hover {
+            background: #e3f2fd;
+            border-color: #bbdefb;
+        }
+        .option-label.selected {
+            background: #bbdefb;
+            border-color: #64b5f6;
+            font-weight: bold;
+        }
+        input[type="radio"] {
+            margin-right: 6px;
+        }
+        .solution-card {
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #4caf50;
+            display: none;
+        }
+        .solution-title {
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #2e7d32;
+            font-size: 20px;
+        }
+        .solution-content {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #c8e6c9;
+            white-space: pre-line;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .btn-action {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 12px;
+            background: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .btn-action:hover {
+            background: #f57c00;
+        }
+        .btn-reset {
+            display: block;
+            margin: 20px auto 10px;
+            padding: 10px 20px;
+            background: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.3s;
+        }
+        .btn-reset:hover {
+            background: #e64a19;
+        }
+        .hidden {
+            display: none;
+        }
+        .progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: #1e88e5;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #e0e0e0;
+            color: #757575;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 8px 15px;
+            background: #1e88e5;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+            z-index: 1000;
+            font-size: 14px;
+        }
+        .scroll-top:hover {
+            background: #1565c0;
+        }
+        .section-title {
+            color: #d35400;
+            font-weight: bold;
+            margin: 8px 0 4px 0;
+            font-size: 16px;
+        }
+        .sub-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin: 6px 0 4px 0;
+            font-size: 15px;
+        }
+        .region-group {
+            margin-bottom: 12px;
+        }
+        .region-title {
+            font-weight: bold;
+            background-color: #eaf7ff;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            color: #2c3e50;
+            font-size: 15px;
+        }
+        .contact-info {
+            background-color: #f0f7ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #1e88e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="version">版本日期2025-11-12开始执行</div>
+        <h1>车险投保流程判断工具</h1>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <div class="breadcrumb" id="breadcrumb">
+            <!-- 面包屑导航将动态添加到这里 -->
+        </div>
+        
+        <div id="questions-container">
+            <!-- 问题将动态添加到这里 -->
+        </div>
+        
+        <div class="solution-card" id="solution-card">
+            <div class="solution-title" id="solution-title"></div>
+            <div class="solution-content" id="solution-content"></div>
+        </div>
+        
+        <button class="btn-reset" id="reset-btn">重新开始</button>
+        
+        <div class="footer">
+            <div>武汉AI项目研究小组</div>
+            <div>by_万明勇</div>
+        </div>
+    </div>
+
+    <div class="scroll-top" id="scroll-top" style="display: none;">返回顶部</div>
+
+    <script>
+        // 问题数据
+        const questions = [
+            {
+                id: "q1",
+                text: "业务类型",
+                options: [
+                    { id: "A", text: "新保" },
+                    { id: "B", text: "续保" }
+                ]
+            },
+            {
+                id: "q2",
+                text: "投保渠道",
+                options: [
+                    { id: "A", text: "综拓" },
+                    { id: "B", text: "其他" }
+                ]
+            },
+            {
+                id: "q3",
+                text: "投保区域",
+                options: [
+                    { id: "A", text: "青海、新疆、西藏、宁夏无机构地区" },
+                    { id: "B", text: "重庆" },
+                    { id: "C", text: "天津" },
+                    { id: "D", text: "陕西" },
+                    { id: "E", text: "深圳" },
+                    { id: "G", text: "北京" },
+                    { id: "F", text: "其他" }
+                ]
+            },
+            {
+                id: "q4",
+                text: "上一年车辆是否办理过过户",
+                options: [
+                    { id: "A", text: "是" },
+                    { id: "B", text: "否" }
+                ]
+            },
+            {
+                id: "q5",
+                text: "符合电销条件（行驶证为个人名的非营运9座（含）以下轿车）",
+                options: [
+                    { id: "A", text: "是" },
+                    { id: "B", text: "否" }
+                ]
+            },
+            {
+                id: "q6",
+                text: "新能源车",
+                options: [
+                    { id: "A", text: "是" },
+                    { id: "B", text: "否" }
+                ]
+            },
+            {
+                id: "q7",
+                text: "摩托车",
+                options: [
+                    { id: "A", text: "是" },
+                    { id: "B", text: "否" }
+                ]
+            },
+            {
+                id: "q8",
+                text: "电销工作时间（周一至周日8:30－19:00）",
+                options: [
+                    { id: "A", text: "是" },
+                    { id: "B", text: "否" }
+                ]
+            },
+            {
+                id: "q9",
+                text: "是否顺丰（如顺丰旗下员工-2000002229）",
+                options: [
+                    { id: "A", text: "是" },
+                    { id: "B", text: "否" }
+                ]
+            },
+            {
+                id: "q10",
+                text: "是否特殊情况（如：非北京车牌、2吨以上非营运性质货车、摩托车）",
+                options: [
+                    { id: "A", text: "是" },
+                    { id: "B", text: "否" }
+                ]
+            }
+        ];
+
+        // 处理方案
+        const solutions = {
+            "s1": {
+                title: "处理方案1：无法投保",
+                content: "<div class='section-title'>告知客户话术：</div>\n\"非常抱歉，由于太平财险在您所在地区没有设立分支机构，我们无法为您提供车险服务。建议您联系当地其他保险公司咨询投保事宜。\""
+            },
+            "s2": {
+                title: "处理方案2：创建预约投保工单（提交对应机构）",
+                content: "<div class='section-title'>参考话术：</div>\n\"您好，您的投保需求已登记，后续机构将有工作人员尽快与您联系。请您保持手机畅通\""
+            },
+            "s3": {
+                title: "处理方案3：创建预约投保工单（提交网电业务部）",
+                content: "<div class='section-title'>询问并记录客户微信号</div>（微信号同手机号、提供具体微信号、不愿/不便提供）\n\n<div class='section-title'>告知客户话术：</div>\n\"为便于后续给您发送报价单，我们工作人员将通过企业微信添加您的微信\"\n\n<div class='section-title'>结束语话术：</div>\n\"您好，您的投保需求已登记，后续请您保持手机畅通关注接听4008688888来电。\"\n\n<div class='section-title'>工单处理时效</div>\n周一至周日9:00-12:00及13:30-18:00时间内的工单：半小时内回复处理\n午休时间12:00-13:30内的工单：14:30回复处理\n18:00后产生的工单：次日10:00前回复处理"
+            },
+            "s4": {
+                title: "处理方案4：转接车险电销",
+                content: "<div class='section-title'>转接话术：</div>\n\"请您不要挂机，我马上为您转接报价专员为您报价，请您稍等。\"\n\n如等待30秒未转接成功。",
+                action: {
+                    text: "跳转到处理方案3",
+                    target: "s3"
+                }
+            },
+            "s5": {
+                title: "处理方案5：指引客户通过'陕西摩托车交强险便民投保平台'公众号投保",
+                content: "<div class='section-title'>参考话术：</div>\n\"陕西省保险行业协会统一上线陕西摩托车交强险便民投保平台，微信公众号中搜索‘陕西摩托车交强险便民投保平台’，点击‘我要投保’，里面有31家主体保险公司，可在线上直接便捷投保，选择太平和其他主体保险公司均可。\"\n\n如通话中客户坚持在太平财险线下投保。",
+                action: {
+                    text: "跳转到处理方案6",
+                    target: "s6"
+                }
+            },
+            "s6": {
+                title: "处理方案6：指引客户前往就近职场办理（陕西分公司本部职场以及西安高新支公司职场除外）",
+                content: "<div class='section-title'>参考话术：</div>\n\"您好，由于您是首次投保摩托车保险，需要验车，请您携带相关资料前往就近的保险公司服务网点办理。\"\n\n如未指引成功的建\"预约投保工单\"，提交机构跟进处理（备注：已指引未成功）"
+            },
+            "s7": {
+                title: "处理方案7：请指引客户联系或携带资料前往指定的深圳新能源车险客户投保信息登记窗口办理",
+                content: "<div class='section-title'>平台根据分派规则给保司分配任务，保司收到登记需求以后十个工作日内会联系客户</div>\n\n<div class='section-title'>参考话术：</div>\n您好！按照行业协会相关要求，请您携带资料前往指定的深圳车险投保信息登记窗口办理投保信息登记。（按客户所在区域就近指引），您可提前拨打咨询详情相关事宜，前往登记。\n\n<div class='section-title'>如客户咨询所需资料，按以下回复：</div>\n\n<div class='sub-title'>1. 个人投保所需查验资料</div>\n投保人身份证（原件）\n被保险人身份证（原件）\n车主的身份证和行驶证（原件）\n保险期内的商业险保单或上一年度商业险与交强险保单（若无保单应在平台如实登记）\n其他证明资料（如验车照片等）\n\n<div class='sub-title'>2. 法人投保所需查验资料</div>\n企业的法人代表身份证（原件）\n行驶证（原件）\n营业执照副本（原件）\n经办人身份证（原件）\n盖有法人印章的经办委托书（原件）\n保险期内的商业险保单或上一年度商业险与交强险保单（若无保单应在平台如实登记）\n其他证明资料（如验车照片等）\n\n<div class='sub-title'>3. 未上牌车辆（含过户车辆）投保所需资料</div>\n新车合格证和增值税发票（原件）\n过户车保险期内的商业险保单或上一年度商业险与交强险保单（若无保单应在平台如实登记）\n其他证明资料（如验车照片等）\n\n<div class='section-title'>深圳新能源车险客户投保信息登记窗口地址及联系方式：</div>",
+                table: [
+                    { region: "福田区", address: "福田区莲花街道富德生命保险大厦7楼707-708室（人保财险南山支公司）", phone: "0755-83615761" },
+                    { region: "福田区", address: "福田区滨河大道中洲湾写字楼东座20楼（平安财险深圳分公司）", phone: "0755-88259737" },
+                    { region: "福田区", address: "福田区皇岗路5001号深业上城T2栋58楼（太保财险深圳分公司）", phone: "0755-22695493" },
+                    { region: "福田区", address: "福田区新洲十一街祥祺大厦25楼（申能财险深圳分公司）", phone: "0755-82137666" },
+                    { region: "罗湖区", address: "罗湖区宝安南路3029号国速中心B栋写字楼6楼（国寿财险国速出单中心）", phone: "0755-82208734" },
+                    { region: "罗湖区", address: "罗湖区桂园街道老围社区深南东路5016号京基一百大厦B座9楼（中华联合财险深圳分公司）", phone: "0755-83571753" },
+                    { region: "罗湖区", address: "罗湖区南湖街道人民南路深房广场B座4501（国任财险深圳分公司）", phone: "0755-25107859" },
+                    { region: "宝安区", address: "宝安区新安街道宝民一路63号宝安公路管理中心15楼1501、1502、1504-1507、1509-1513（人保财险宝安支公司）", phone: "0755-23503249" },
+                    { region: "宝安区", address: "宝安区前进二路21号流塘商务大厦A座17楼（平安财险深圳分公司）", phone: "0755-89988105" },
+                    { region: "宝安区", address: "宝安区海秀路19号国际西岸商务大厦19楼（太保财险宝安支公司）", phone: "0755-22695889" },
+                    { region: "宝安区", address: "宝安区龙井二路中粮地产大厦16楼06室（亚太财险深圳分公司）", phone: "0755-27873825" },
+                    { region: "南山区", address: "南山区粤海街道兰芷二路66号阳光金融大厦8层（阳光财险深圳分公司）", phone: "0755-22200723" },
+                    { region: "南山区", address: "南山区南山街道东滨路南荔源商务大厦A栋1301-1306、1401（众诚财险深圳分公司）", phone: "0755-88365066" },
+                    { region: "南山区", address: "南山区南海大道2168号恒大天璟大厦B座808单元（大地财险深圳分公司）", phone: "0755-33007267" },
+                    { region: "龙岗区", address: "龙岗区中心城腾飞路9号创投大厦3001（人保财险龙岗支公司）", phone: "0755-28924805" },
+                    { region: "龙岗区", address: "龙岗区腾飞路创投大厦32F08（平安财险深圳分公司）", phone: "0755-89989473" },
+                    { region: "龙岗区", address: "龙岗区龙城街道爱联股份大厦5楼（太保财险龙岗支公司）", phone: "0755-22695320" },
+                    { region: "光明区", address: "光明新区公明北环大道1号非陌上方中心12楼1201-1202室（太平财险光明支公司）", phone: "0755-23422253" }
+                ]
+            },
+            "s8": {
+                title: "处理方案8：指引客户联系顺丰专属联系人",
+                content: "<div class='section-title'>参考话术：</div>\n\"您好，顺丰业务，请直接联系我们的顺丰专属联系人杨少云，联系电话0755-33013872或13631901948，他会为您处理相关投保事宜。\"\n\n<div class='contact-info'>\n<div class='section-title'>顺丰专属联系人：</div>\n<div>杨少云</div>\n<div>电话：0755-33013872</div>\n<div>手机：13631901948</div>\n</div>"
+            },
+            "s9": {
+                title: "处理方案9：北京地区特殊情况",
+                content: "<div class='section-title'>北京地区特殊情况处理：</div>\n\n<div class='sub-title'>1. 车牌问题</div>\n北京地区交强险原则上只承保\"京\"牌照车辆，其他牌照如有京使用证明，请指引到前台上门业务办理；商业险只承保\"京\"牌照车辆，其他地区车辆不予承保（新车未上牌且发票开票地址为北京或验车照地标照为北京方可承保）。\n\n<div class='sub-title'>2. 车辆类型问题</div>\n我司暂不受理\"2吨以上非营运性质货车商业险\"承保业务，请指引客户与其他保险公司联系。\n\n<div class='sub-title'>3. 摩托车问题</div>\n北京地区承保摩托车交强险及商业险均需临柜咨询。"
+            }
+        };
+
+        // 判断逻辑规则
+        const rules = [
+            // 新保+深圳+顺丰
+            { path: ["q1:A", "q3:E", "q9:A"], solution: "s8" },
+            // 续保+非综拓+深圳+顺丰
+            { path: ["q1:B", "q2:B", "q3:E", "q9:A"], solution: "s8" },
+            // 新保+北京+特殊情况
+            { path: ["q1:A", "q3:G", "q10:A"], solution: "s9" },
+            // 续保+非综拓+北京+特殊情况
+            { path: ["q1:B", "q2:B", "q3:G", "q10:A"], solution: "s9" },
+            
+            // 原有规则保持不变，但添加了北京和深圳的规则
+            { path: ["q1:A", "q3:A"], solution: "s1" },
+            { path: ["q1:A", "q3:B", "q4:A"], solution: "s2" },
+            { path: ["q1:A", "q3:B", "q4:B", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:A", "q3:B", "q4:B", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:A", "q3:B", "q4:B", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:A", "q3:B", "q4:B", "q5:B"], solution: "s2" },
+            { path: ["q1:A", "q3:C", "q4:A"], solution: "s2" },
+            { path: ["q1:A", "q3:C", "q4:B", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:A", "q3:C", "q4:B", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:A", "q3:C", "q4:B", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:A", "q3:C", "q4:B", "q5:B"], solution: "s2" },
+            { path: ["q1:A", "q3:D", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:A", "q3:D", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:A", "q3:D", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:A", "q3:D", "q5:B", "q7:A"], solution: "s6" },
+            { path: ["q1:A", "q3:D", "q5:B", "q7:B"], solution: "s2" },
+            // 新保+深圳+非顺丰
+            { path: ["q1:A", "q3:E", "q9:B", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:A", "q3:E", "q9:B", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:A", "q3:E", "q9:B", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:A", "q3:E", "q9:B", "q5:B", "q6:A"], solution: "s7" },
+            { path: ["q1:A", "q3:E", "q9:B", "q5:B", "q6:B"], solution: "s2" },
+            // 新保+北京+无特殊情况
+            { path: ["q1:A", "q3:G", "q10:B", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:A", "q3:G", "q10:B", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:A", "q3:G", "q10:B", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:A", "q3:G", "q10:B", "q5:B"], solution: "s2" },
+            { path: ["q1:A", "q3:F", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:A", "q3:F", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:A", "q3:F", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:A", "q3:F", "q5:B"], solution: "s2" },
+            { path: ["q1:B", "q2:A"], solution: "s2" },
+            { path: ["q1:B", "q2:B", "q3:A"], solution: "s1" },
+            { path: ["q1:B", "q2:B", "q3:B", "q4:A"], solution: "s2" },
+            { path: ["q1:B", "q2:B", "q3:B", "q4:B", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:B", "q4:B", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:B", "q2:B", "q3:B", "q4:B", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:B", "q4:B", "q5:B"], solution: "s2" },
+            { path: ["q1:B", "q2:B", "q3:C", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:C", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:B", "q2:B", "q3:C", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:C", "q5:B"], solution: "s2" },
+            { path: ["q1:B", "q2:B", "q3:D", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:D", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:B", "q2:B", "q3:D", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:D", "q5:B", "q7:A"], solution: "s5" },
+            { path: ["q1:B", "q2:B", "q3:D", "q5:B", "q7:B"], solution: "s2" },
+            // 续保+非综拓+深圳+非顺丰
+            { path: ["q1:B", "q2:B", "q3:E", "q9:B", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:E", "q9:B", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:B", "q2:B", "q3:E", "q9:B", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:E", "q9:B", "q5:B"], solution: "s2" },
+            // 续保+非综拓+北京+无特殊情况
+            { path: ["q1:B", "q2:B", "q3:G", "q10:B", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:G", "q10:B", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:B", "q2:B", "q3:G", "q10:B", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:G", "q10:B", "q5:B"], solution: "s2" },
+            { path: ["q1:B", "q2:B", "q3:F", "q5:A", "q6:A"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:F", "q5:A", "q6:B", "q8:A"], solution: "s4" },
+            { path: ["q1:B", "q2:B", "q3:F", "q5:A", "q6:B", "q8:B"], solution: "s3" },
+            { path: ["q1:B", "q2:B", "q3:F", "q5:B"], solution: "s2" }
+        ];
+
+        // 应用状态
+        let currentState = {
+            answers: {},
+            visibleQuestions: ["q1"], // 初始只显示第一个问题
+            breadcrumb: [], // 面包屑导航
+            currentSolution: null // 当前解决方案
+        };
+
+        // 初始化函数
+        function init() {
+            renderBreadcrumb();
+            renderQuestions();
+            updateProgress();
+            
+            // 重置按钮事件
+            document.getElementById('reset-btn').addEventListener('click', resetApp);
+            
+            // 返回顶部按钮事件
+            document.getElementById('scroll-top').addEventListener('click', scrollToTop);
+            
+            // 滚动显示返回顶部按钮
+            window.addEventListener('scroll', toggleScrollTopButton);
+        }
+
+        // 显示/隐藏返回顶部按钮
+        function toggleScrollTopButton() {
+            const scrollTopBtn = document.getElementById('scroll-top');
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.style.display = 'block';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        }
+
+        // 返回顶部
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 渲染面包屑导航
+        function renderBreadcrumb() {
+            const breadcrumbContainer = document.getElementById('breadcrumb');
+            breadcrumbContainer.innerHTML = '';
+            
+            if (currentState.breadcrumb.length === 0 && !currentState.currentSolution) {
+                return;
+            }
+            
+            // 添加问题面包屑
+            currentState.breadcrumb.forEach((item, index) => {
+                const breadcrumbItem = document.createElement('div');
+                breadcrumbItem.className = 'breadcrumb-item';
+                
+                if (index > 0) {
+                    const separator = document.createElement('span');
+                    separator.className = 'breadcrumb-separator';
+                    separator.innerHTML = '→';
+                    breadcrumbContainer.appendChild(separator);
+                }
+                
+                // 处理答案文本显示
+                let answerDisplayText = item.answerText;
+                if (answerDisplayText === "青海、新疆、西藏、宁夏无机构地区") {
+                    answerDisplayText = "无机构";
+                }
+                
+                // 处理问题文本显示
+                let questionDisplayText = item.questionText;
+                if (questionDisplayText === "符合电销条件（行驶证为个人名的非营运9座（含）以下轿车）") {
+                    questionDisplayText = "符合电销条件";
+                } else if (questionDisplayText === "上一年车辆是否办理过过户") {
+                    questionDisplayText = "过户车";
+                } else if (questionDisplayText === "电销工作时间（周一至周日8:30－19:00）") {
+                    questionDisplayText = "电销工作时间";
+                } else if (questionDisplayText === "是否顺丰（如顺丰旗下员工-2000002229）") {
+                    questionDisplayText = "顺丰";
+                } else if (questionDisplayText === "是否特殊情况（如：非北京车牌、2吨以上非营运性质货车、摩托车）") {
+                    questionDisplayText = "特殊情况";
+                }
+                
+                const link = document.createElement('a');
+                link.innerHTML = `${questionDisplayText}（${answerDisplayText}）`;
+                link.onclick = () => navigateToStep(index);
+                
+                breadcrumbItem.appendChild(link);
+                breadcrumbContainer.appendChild(breadcrumbItem);
+            });
+            
+            // 添加解决方案面包屑
+            if (currentState.currentSolution) {
+                if (currentState.breadcrumb.length > 0) {
+                    const separator = document.createElement('span');
+                    separator.className = 'breadcrumb-separator';
+                    separator.innerHTML = '→';
+                    breadcrumbContainer.appendChild(separator);
+                }
+                
+                const solutionItem = document.createElement('div');
+                solutionItem.className = 'breadcrumb-item';
+                
+                const solutionLink = document.createElement('a');
+                solutionLink.innerHTML = currentState.currentSolution.title;
+                solutionLink.className = 'breadcrumb-solution';
+                solutionLink.onclick = () => {}; // 解决方案不可点击
+                
+                solutionItem.appendChild(solutionLink);
+                breadcrumbContainer.appendChild(solutionItem);
+            }
+        }
+
+        // 导航到指定步骤
+        function navigateToStep(stepIndex) {
+            // 清除后续的所有答案和问题
+            const newAnswers = {};
+            const newBreadcrumb = [];
+            
+            for (let i = 0; i <= stepIndex; i++) {
+                const step = currentState.breadcrumb[i];
+                newAnswers[step.questionId] = step.answerId;
+                newBreadcrumb.push(step);
+            }
+            
+            currentState.answers = newAnswers;
+            currentState.breadcrumb = newBreadcrumb;
+            currentState.currentSolution = null;
+            
+            // 重新确定可见问题
+            determineVisibleQuestions();
+            
+            // 隐藏解决方案
+            document.getElementById('solution-card').style.display = 'none';
+            
+            // 重新渲染界面
+            renderBreadcrumb();
+            renderQuestions();
+            updateProgress();
+        }
+
+        // 渲染问题
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+            
+            // 根据当前答案确定是否显示问题9和10
+            const visibleQuestions = [...currentState.visibleQuestions];
+            const regionAnswer = currentState.answers["q3"];
+            
+            // 如果选择了深圳，确保问题9在适当位置
+            if (regionAnswer === "E" && !visibleQuestions.includes("q9")) {
+                // 找到q3后的位置插入q9
+                const q3Index = visibleQuestions.indexOf("q3");
+                if (q3Index >= 0) {
+                    visibleQuestions.splice(q3Index + 1, 0, "q9");
+                }
+            }
+            
+            // 如果选择了北京，确保问题10在适当位置
+            if (regionAnswer === "G" && !visibleQuestions.includes("q10")) {
+                // 找到q3后的位置插入q10
+                const q3Index = visibleQuestions.indexOf("q3");
+                if (q3Index >= 0) {
+                    visibleQuestions.splice(q3Index + 1, 0, "q10");
+                }
+            }
+            
+            // 移除不符合条件的q9和q10
+            if (regionAnswer !== "E" && visibleQuestions.includes("q9")) {
+                const q9Index = visibleQuestions.indexOf("q9");
+                visibleQuestions.splice(q9Index, 1);
+            }
+            if (regionAnswer !== "G" && visibleQuestions.includes("q10")) {
+                const q10Index = visibleQuestions.indexOf("q10");
+                visibleQuestions.splice(q10Index, 1);
+            }
+            
+            currentState.visibleQuestions = visibleQuestions;
+            
+            currentState.visibleQuestions.forEach(qId => {
+                const question = questions.find(q => q.id === qId);
+                if (!question) return;
+                
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-card';
+                questionDiv.id = `card-${qId}`;
+                
+                let optionsHtml = '';
+                question.options.forEach(option => {
+                    const isChecked = currentState.answers[qId] === option.id;
+                    optionsHtml += `
+                        <label class="option-label ${isChecked ? 'selected' : ''}">
+                            <input type="radio" name="${qId}" value="${option.id}" 
+                                ${isChecked ? 'checked' : ''} 
+                                onchange="handleAnswer('${qId}', '${option.id}', '${question.text}', '${option.text}')">
+                            ${option.text}
+                        </label>
+                    `;
+                });
+                
+                questionDiv.innerHTML = `
+                    <div class="question-title">${question.text}</div>
+                    <div class="options-container">${optionsHtml}</div>
+                `;
+                
+                container.appendChild(questionDiv);
+            });
+        }
+
+        // 处理答案选择
+        function handleAnswer(questionId, answerId, questionText, answerText) {
+            // 更新答案
+            currentState.answers[questionId] = answerId;
+            
+            // 更新面包屑
+            const existingIndex = currentState.breadcrumb.findIndex(item => item.questionId === questionId);
+            if (existingIndex >= 0) {
+                currentState.breadcrumb = currentState.breadcrumb.slice(0, existingIndex);
+            }
+            
+            currentState.breadcrumb.push({
+                questionId,
+                questionText,
+                answerId,
+                answerText
+            });
+            
+            // 更新选项样式
+            const options = document.querySelectorAll(`#card-${questionId} .option-label`);
+            options.forEach(opt => opt.classList.remove('selected'));
+            event.target.parentNode.classList.add('selected');
+            
+            // 清除后续的问题和答案
+            clearSubsequentQuestions(questionId);
+            
+            // 确定下一个问题或解决方案
+            determineNextStep(questionId, answerId);
+            
+            // 更新进度条和面包屑
+            updateProgress();
+            renderBreadcrumb();
+        }
+
+        // 清除后续的问题和答案
+        function clearSubsequentQuestions(questionId) {
+            const index = currentState.visibleQuestions.indexOf(questionId);
+            if (index >= 0) {
+                currentState.visibleQuestions = currentState.visibleQuestions.slice(0, index + 1);
+                
+                // 清除后续的答案
+                Object.keys(currentState.answers).forEach(key => {
+                    const qIndex = currentState.visibleQuestions.indexOf(key);
+                    if (qIndex < 0 || qIndex > index) {
+                        delete currentState.answers[key];
+                    }
+                });
+            }
+            
+            // 清除解决方案
+            currentState.currentSolution = null;
+            
+            // 隐藏解决方案
+            document.getElementById('solution-card').style.display = 'none';
+        }
+
+        // 确定下一步
+        function determineNextStep(questionId, answerId) {
+            // 检查是否匹配任何规则
+            const currentPath = Object.entries(currentState.answers).map(([q, a]) => `${q}:${a}`);
+            
+            // 查找匹配的规则
+            let matchedRule = null;
+            for (const rule of rules) {
+                if (rule.path.every((step, i) => i < currentPath.length && step === currentPath[i])) {
+                    matchedRule = rule;
+                    // 如果完全匹配，则显示解决方案
+                    if (rule.path.length === currentPath.length) {
+                        showSolution(rule.solution);
+                        return;
+                    }
+                }
+            }
+            
+            // 如果没有完全匹配的规则，找出下一个应该显示的问题
+            if (matchedRule) {
+                const nextStep = matchedRule.path[currentPath.length];
+                if (nextStep) {
+                    const nextQuestionId = nextStep.split(':')[0];
+                    
+                    // 如果下一个问题还没有显示，则添加到可见问题列表中
+                    if (!currentState.visibleQuestions.includes(nextQuestionId)) {
+                        currentState.visibleQuestions.push(nextQuestionId);
+                        renderQuestions();
+                    }
+                }
+            } else {
+                // 如果没有匹配的规则，检查是否有其他可能的路径
+                const possibleNextQuestions = findPossibleNextQuestions(currentPath);
+                if (possibleNextQuestions.length > 0) {
+                    possibleNextQuestions.forEach(qId => {
+                        if (!currentState.visibleQuestions.includes(qId)) {
+                            currentState.visibleQuestions.push(qId);
+                        }
+                    });
+                    renderQuestions();
+                } else {
+                    // 如果没有可能的下一步，显示默认解决方案
+                    showSolution("s2");
+                }
+            }
+        }
+
+        // 确定可见问题
+        function determineVisibleQuestions() {
+            const currentPath = Object.entries(currentState.answers).map(([q, a]) => `${q}:${a}`);
+            currentState.visibleQuestions = ["q1"];
+            
+            // 根据当前答案路径确定可见问题
+            for (let i = 0; i < currentPath.length; i++) {
+                const pathSegment = currentPath[i];
+                const questionId = pathSegment.split(':')[0];
+                
+                if (!currentState.visibleQuestions.includes(questionId)) {
+                    currentState.visibleQuestions.push(questionId);
+                }
+                
+                // 查找匹配的规则
+                for (const rule of rules) {
+                    if (rule.path.slice(0, i + 1).every((step, j) => j < currentPath.length && step === currentPath[j])) {
+                        if (rule.path.length > i + 1) {
+                            const nextQuestionId = rule.path[i + 1].split(':')[0];
+                            if (!currentState.visibleQuestions.includes(nextQuestionId)) {
+                                currentState.visibleQuestions.push(nextQuestionId);
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        // 查找可能的下一步问题
+        function findPossibleNextQuestions(currentPath) {
+            const possibleQuestions = new Set();
+            
+            for (const rule of rules) {
+                if (rule.path.length > currentPath.length && 
+                    rule.path.slice(0, currentPath.length).every((step, i) => step === currentPath[i])) {
+                    const nextStep = rule.path[currentPath.length];
+                    const nextQuestionId = nextStep.split(':')[0];
+                    possibleQuestions.add(nextQuestionId);
+                }
+            }
+            
+            return Array.from(possibleQuestions);
+        }
+
+        // 显示解决方案
+        function showSolution(solutionId) {
+            const solution = solutions[solutionId];
+            if (!solution) return;
+            
+            // 保存当前解决方案
+            currentState.currentSolution = solution;
+            
+            document.getElementById('solution-title').textContent = solution.title;
+            
+            let contentHtml = solution.content;
+            
+            // 添加操作按钮（如果适用）
+            if (solution.action) {
+                contentHtml += ` <button class="btn-action" onclick="showSolution('${solution.action.target}')">${solution.action.text}</button>`;
+            }
+            
+            // 添加表格（如果适用）
+            if (solution.table) {
+                // 按区域分组
+                const groupedByRegion = {};
+                solution.table.forEach(row => {
+                    if (!groupedByRegion[row.region]) {
+                        groupedByRegion[row.region] = [];
+                    }
+                    groupedByRegion[row.region].push(row);
+                });
+                
+                let tableHtml = '';
+                
+                // 为每个区域创建一个区域组
+                for (const region in groupedByRegion) {
+                    tableHtml += `<div class='region-group'>`;
+                    tableHtml += `<div class='region-title'>${region}</div>`;
+                    tableHtml += `<table>`;
+                    tableHtml += `<tr><th>窗口地址</th><th>联系电话</th></tr>`;
+                    
+                    groupedByRegion[region].forEach(row => {
+                        tableHtml += `<tr>`;
+                        tableHtml += `<td>${row.address}</td>`;
+                        tableHtml += `<td>${row.phone}</td>`;
+                        tableHtml += `</tr>`;
+                    });
+                    
+                    tableHtml += `</table>`;
+                    tableHtml += `</div>`;
+                }
+                
+                contentHtml += tableHtml;
+            }
+            
+            document.getElementById('solution-content').innerHTML = contentHtml;
+            document.getElementById('solution-card').style.display = 'block';
+            
+            // 隐藏后续问题
+            currentState.visibleQuestions = Object.keys(currentState.answers);
+            renderQuestions();
+            
+            // 更新面包屑
+            renderBreadcrumb();
+            
+            // 滚动到解决方案
+            document.getElementById('solution-card').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 更新进度条
+        function updateProgress() {
+            const totalSteps = Math.max(1, currentState.visibleQuestions.length);
+            const completedSteps = Object.keys(currentState.answers).length;
+            const progress = (completedSteps / totalSteps) * 100;
+            
+            document.getElementById('progress').style.width = `${progress}%`;
+        }
+
+        // 重置应用
+        function resetApp() {
+            currentState = {
+                answers: {},
+                visibleQuestions: ["q1"],
+                breadcrumb: [],
+                currentSolution: null
+            };
+            
+            document.getElementById('solution-card').style.display = 'none';
+            renderBreadcrumb();
+            renderQuestions();
+            updateProgress();
+            
+            // 滚动到顶部
+            scrollToTop();
+        }
+
+        // 初始化应用
+        window.onload = init;
+    </script>
+</body>
+</html>

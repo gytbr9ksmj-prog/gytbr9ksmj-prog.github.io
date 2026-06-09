@@ -3,1494 +3,1189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>南昌自驾旅行攻略 · 4月24–26日</title>
+<title>公司团建攻略 | 武汉→揭阳·南澳岛 2026.6.27-6.30</title>
 <style>
-  :root {
-    --red: #c0392b;
-    --red-light: #e74c3c;
-    --gold: #f39c12;
-    --gold-light: #f8c471;
-    --bg: #fdf6ee;
-    --card: #ffffff;
-    --text: #2c2c2c;
-    --muted: #888;
-    --border: #e8ddd0;
-    --shadow: 0 4px 20px rgba(0,0,0,0.08);
-    --shadow-hover: 0 8px 32px rgba(192,57,43,0.15);
-  }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
-    font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #f7f8fa;
+    color: #1a1a1a;
+    font-size: 14px;
+    line-height: 1.7;
   }
 
-  /* ── 顶部导航 ── */
-  header {
-    background: linear-gradient(135deg, #8b0000 0%, var(--red) 50%, #a93226 100%);
+  /* 封面 */
+  .hero {
+    background: linear-gradient(135deg, #1a6fa8 0%, #0d4f7c 50%, #0a3a5c 100%);
     color: #fff;
-    padding: 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    padding: 56px 32px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .hero p {
+    font-size: 15px;
+    opacity: 0.85;
+    margin-bottom: 24px;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat .num {
+    font-size: 22px;
+    font-weight: 600;
+    display: block;
+  }
+  .hero-stat .label {
+    font-size: 12px;
+    opacity: 0.7;
   }
 
-  .header-inner {
-    max-width: 900px;
+  /* 主体 */
+  .container {
+    max-width: 860px;
     margin: 0 auto;
-    padding: 16px 20px 0;
+    padding: 32px 20px;
   }
 
-  .header-title {
+  /* 卡片 */
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e8eaed;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f0f0f0;
   }
-
-  .header-title .icon { font-size: 28px; }
-
-  .header-title h1 {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 1px;
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
   }
+  .icon-blue { background: #e8f2fc; }
+  .icon-green { background: #e8f5e9; }
+  .icon-orange { background: #fff3e0; }
+  .icon-purple { background: #f3e5f5; }
+  .icon-red { background: #fce4e4; }
+  .icon-teal { background: #e0f7fa; }
 
-  .header-title .subtitle {
-    font-size: 12px;
-    opacity: 0.8;
-    margin-top: 2px;
-  }
+  .card-title { font-size: 16px; font-weight: 600; color: #1a1a1a; }
+  .card-subtitle { font-size: 12px; color: #888; margin-top: 2px; }
 
-  /* 标签页 */
-  .tabs {
+  /* 日期导航 */
+  .day-nav {
     display: flex;
-    gap: 0;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
   }
-
-  .tab {
-    flex: 1;
-    padding: 10px 8px;
-    text-align: center;
+  .day-btn {
+    padding: 8px 18px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    background: #fff;
     cursor: pointer;
     font-size: 13px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.7);
-    border-bottom: 3px solid transparent;
-    transition: all 0.25s;
-    user-select: none;
-    position: relative;
+    color: #444;
+    transition: all 0.2s;
+    font-family: inherit;
   }
-
-  .tab:hover { color: #fff; background: rgba(255,255,255,0.08); }
-
-  .tab.active {
+  .day-btn:hover, .day-btn.active {
+    background: #1a6fa8;
+    border-color: #1a6fa8;
     color: #fff;
-    border-bottom-color: var(--gold);
-    background: rgba(255,255,255,0.12);
   }
 
-  .tab .tab-date {
-    display: block;
-    font-size: 11px;
-    font-weight: 400;
-    opacity: 0.75;
-    margin-top: 1px;
-  }
+  .day-content { display: none; }
+  .day-content.show { display: block; }
 
-  /* ── 主内容 ── */
-  .main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px 16px 60px;
-  }
-
-  /* 页面切换 */
-  .page { display: none; animation: fadeIn 0.35s ease; }
-  .page.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-
-  /* ── 页面标题条 ── */
-  .day-header {
-    background: linear-gradient(135deg, var(--red) 0%, var(--red-light) 100%);
-    border-radius: 16px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    box-shadow: var(--shadow-hover);
-  }
-
-  .day-header .day-emoji { font-size: 40px; }
-
-  .day-header .day-info h2 { font-size: 22px; font-weight: 700; }
-  .day-header .day-info p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
-
-  .day-header .day-badge {
-    margin-left: auto;
-    background: rgba(255,255,255,0.2);
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 12px;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  /* ── 时间线 ── */
-  .timeline {
-    position: relative;
-    padding-left: 56px;
-  }
-
+  /* 时间线 */
+  .timeline { position: relative; padding-left: 24px; }
   .timeline::before {
     content: '';
-    position: absolute;
-    left: 20px;
-    top: 10px;
-    bottom: 10px;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--red-light), var(--gold-light), var(--border));
-    border-radius: 2px;
+    position: absolute; left: 6px; top: 8px; bottom: 8px;
+    width: 2px; background: #e8eaed;
   }
-
-  /* ── 时间节点 ── */
-  .event {
+  .tl-item {
     position: relative;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
-
-  /* 时间点圆圈 */
-  .event-dot {
-    position: absolute;
-    left: -44px;
-    top: 16px;
-    width: 32px;
-    height: 32px;
+  .tl-item::before {
+    content: '';
+    position: absolute; left: -20px; top: 6px;
+    width: 10px; height: 10px;
     border-radius: 50%;
-    background: var(--red);
-    border: 3px solid #fff;
-    box-shadow: 0 2px 8px rgba(192,57,43,0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: #1a6fa8;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #1a6fa8;
+  }
+  .tl-time {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1a6fa8;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+  .tl-title {
     font-size: 14px;
-    z-index: 2;
-    transition: transform 0.2s;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 3px;
   }
-
-  .event-dot.gold { background: var(--gold); }
-  .event-dot.green { background: #27ae60; }
-  .event-dot.blue { background: #2980b9; }
-  .event-dot.purple { background: #8e44ad; }
-  .event-dot.orange { background: #e67e22; }
-  .event-dot.teal { background: #16a085; }
-
-  /* ── 卡片 ── */
-  .card {
-    background: var(--card);
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: box-shadow 0.25s, transform 0.2s;
+  .tl-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
   }
-
-  .card:hover { box-shadow: var(--shadow-hover); }
-
-  /* 卡片头部（可点击） */
-  .card-head {
-    display: flex;
-    align-items: center;
-    padding: 14px 18px;
-    cursor: pointer;
-    user-select: none;
-    gap: 12px;
-    transition: background 0.2s;
-  }
-
-  .card-head:hover { background: #fdf0ee; }
-  .card-head:active { background: #fae0da; }
-
-  .card-head .time-badge {
-    background: linear-gradient(135deg, var(--red), var(--red-light));
-    color: #fff;
-    border-radius: 8px;
-    padding: 4px 10px;
-    font-size: 12px;
-    font-weight: 700;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .card-head .time-badge.gold-bg {
-    background: linear-gradient(135deg, #e67e22, var(--gold));
-  }
-
-  .card-head .time-badge.green-bg {
-    background: linear-gradient(135deg, #27ae60, #2ecc71);
-  }
-
-  .card-head .time-badge.blue-bg {
-    background: linear-gradient(135deg, #2980b9, #3498db);
-  }
-
-  .card-head .time-badge.purple-bg {
-    background: linear-gradient(135deg, #8e44ad, #9b59b6);
-  }
-
-  .card-head .time-badge.teal-bg {
-    background: linear-gradient(135deg, #16a085, #1abc9c);
-  }
-
-  .card-head .card-title {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .card-head .card-title h3 {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .card-head .card-title p {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .card-head .tags {
-    display: flex;
-    gap: 5px;
-    flex-shrink: 0;
-  }
-
-  .tag {
+  .tl-tag {
+    display: inline-block;
     font-size: 11px;
     padding: 2px 8px;
-    border-radius: 20px;
+    border-radius: 4px;
+    margin-top: 4px;
     font-weight: 500;
   }
+  .tag-transport { background: #e3f2fd; color: #1565c0; }
+  .tag-meal { background: #e8f5e9; color: #2e7d32; }
+  .tag-activity { background: #fff3e0; color: #e65100; }
+  .tag-hotel { background: #f3e5f5; color: #6a1b9a; }
+  .tag-tip { background: #fff8e1; color: #f57f17; }
 
-  .tag.free { background: #e8f5e9; color: #2e7d32; }
-  .tag.paid { background: #fff3e0; color: #e65100; }
-  .tag.food { background: #fce4ec; color: #c62828; }
-  .tag.night { background: #e8eaf6; color: #3949ab; }
-  .tag.drive { background: #e3f2fd; color: #1565c0; }
-  .tag.camp { background: #f3e5f5; color: #6a1b9a; }
-  .tag.tip { background: #e0f2f1; color: #00695c; }
-
-  .card-head .chevron {
-    font-size: 12px;
-    color: var(--muted);
-    transition: transform 0.3s;
-    flex-shrink: 0;
-  }
-
-  /* 展开内容 */
-  .card-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .card-body.open { max-height: 1200px; }
-
-  .card-body-inner {
-    padding: 0 18px 18px;
-    border-top: 1px solid var(--border);
-    background: #fafaf8;
-  }
-
-  .card-body-inner .section {
-    margin-top: 14px;
-  }
-
-  .card-body-inner .section-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--red);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .card-body-inner p {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #444;
-  }
-
+  /* 信息网格 */
   .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 8px;
-    margin-top: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
   }
-
-  .info-item {
-    background: #fff;
-    border: 1px solid var(--border);
+  .info-box {
+    background: #f8f9fa;
     border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 13px;
+    padding: 14px;
+    border-left: 3px solid #1a6fa8;
   }
-
-  .info-item .label {
+  .info-box.green { border-left-color: #43a047; }
+  .info-box.orange { border-left-color: #fb8c00; }
+  .info-box.purple { border-left-color: #8e24aa; }
+  .info-box.red { border-left-color: #e53935; }
+  .info-label {
     font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 2px;
-  }
-
-  .info-item .value {
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .highlight-box {
-    background: linear-gradient(135deg, #fff8f0, #fff);
-    border-left: 3px solid var(--gold);
-    border-radius: 0 8px 8px 0;
-    padding: 10px 14px;
-    margin-top: 8px;
-    font-size: 13px;
-    color: #555;
-    line-height: 1.6;
-  }
-
-  .tip-box {
-    background: #e8f5e9;
-    border-left: 3px solid #27ae60;
-    border-radius: 0 8px 8px 0;
-    padding: 10px 14px;
-    margin-top: 8px;
-    font-size: 13px;
-    color: #2d6a4f;
-    line-height: 1.6;
-  }
-
-  .warn-box {
-    background: #fff3e0;
-    border-left: 3px solid var(--gold);
-    border-radius: 0 8px 8px 0;
-    padding: 10px 14px;
-    margin-top: 8px;
-    font-size: 13px;
-    color: #7d4e00;
-    line-height: 1.6;
-  }
-
-  .food-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-top: 8px;
-  }
-
-  .food-item {
-    background: #fff0f0;
-    border: 1px solid #ffcdd2;
-    color: var(--red);
-    border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 13px;
+    color: #999;
+    margin-bottom: 4px;
     font-weight: 500;
   }
-
-  /* ── 充电信息卡 ── */
-  .charge-card {
-    background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
-    border: 1px solid #bbdefb;
-    border-radius: 14px;
-    padding: 16px 20px;
-    margin-bottom: 16px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
+  .info-val {
+    font-size: 14px;
+    color: #222;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .info-sub {
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
   }
 
-  .charge-card .charge-icon { font-size: 28px; flex-shrink: 0; }
-
-  .charge-card .charge-content h4 {
-    font-size: 15px;
-    font-weight: 700;
-    color: #1565c0;
+  /* 餐饮卡片 */
+  .food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .food-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 14px;
+    background: #fff;
+  }
+  .food-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .food-type {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
     margin-bottom: 6px;
   }
+  .ft-breakfast { background: #fff8e1; color: #f57f17; }
+  .ft-lunch { background: #e8f5e9; color: #2e7d32; }
+  .ft-dinner { background: #fce4ec; color: #c62828; }
+  .ft-snack { background: #e3f2fd; color: #1565c0; }
+  .food-desc { font-size: 12px; color: #777; line-height: 1.6; }
+  .food-price { font-size: 13px; color: #e53935; font-weight: 500; margin-top: 6px; }
 
-  .charge-card .charge-content p {
+  /* 景点卡片 */
+  .spot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .spot-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .spot-banner {
+    height: 6px;
+    background: linear-gradient(90deg, #1a6fa8, #43b89c);
+  }
+  .spot-body { padding: 12px; }
+  .spot-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .spot-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #e3f2fd;
+    color: #1565c0;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  .spot-desc { font-size: 12px; color: #777; line-height: 1.6; }
+  .spot-tip { font-size: 11px; color: #999; margin-top: 4px; }
+
+  /* 提示框 */
+  .notice {
+    border-radius: 8px;
+    padding: 12px 16px;
     font-size: 13px;
-    color: #555;
-    line-height: 1.6;
+    line-height: 1.7;
+    margin-top: 14px;
   }
+  .notice.blue { background: #e8f2fc; color: #1a5276; border-left: 3px solid #1a6fa8; }
+  .notice.orange { background: #fff3e0; color: #7f3b08; border-left: 3px solid #fb8c00; }
+  .notice.green { background: #e8f5e9; color: #1b5e20; border-left: 3px solid #43a047; }
+  .notice.red { background: #fce4e4; color: #7f0000; border-left: 3px solid #e53935; }
+  .notice strong { font-weight: 600; }
 
-  .charge-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 13px;
-  }
-
-  .charge-table th {
-    background: #1565c0;
-    color: #fff;
-    padding: 7px 10px;
-    text-align: left;
-    font-weight: 600;
-  }
-
-  .charge-table td {
-    padding: 7px 10px;
-    border-bottom: 1px solid #e0e0e0;
-    background: #fff;
-    color: #444;
-    vertical-align: top;
-  }
-
-  .charge-table tr:last-child td { border-bottom: none; }
-
-  /* ── 总览表 ── */
+  /* 行程总览表格 */
   .overview-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
     margin-top: 8px;
-    border-radius: 10px;
-    overflow: hidden;
   }
-
   .overview-table th {
-    background: var(--red);
-    color: #fff;
-    padding: 9px 12px;
+    background: #f5f7fa;
+    padding: 10px 14px;
     text-align: left;
+    font-weight: 500;
+    color: #555;
+    border-bottom: 1px solid #e0e0e0;
   }
-
   .overview-table td {
-    padding: 9px 12px;
-    border-bottom: 1px solid var(--border);
-    background: #fff;
+    padding: 10px 14px;
+    border-bottom: 1px solid #f0f0f0;
     vertical-align: top;
   }
-
-  .overview-table tr:nth-child(even) td { background: #fdf7f5; }
   .overview-table tr:last-child td { border-bottom: none; }
-
-  /* ── 行程摘要卡 ── */
-  .summary-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  .summary-item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 12px;
-    text-align: center;
-    box-shadow: var(--shadow);
-  }
-
-  .summary-item .s-icon { font-size: 24px; margin-bottom: 6px; }
-  .summary-item .s-label { font-size: 11px; color: var(--muted); }
-  .summary-item .s-value { font-size: 14px; font-weight: 700; color: var(--text); margin-top: 2px; }
-
-  /* ── 进度条 ── */
-  .progress-bar {
-    background: var(--border);
+  .overview-table tr:hover td { background: #fafafa; }
+  .day-pill {
+    display: inline-block;
+    background: #1a6fa8;
+    color: #fff;
     border-radius: 4px;
-    height: 4px;
-    margin-top: 20px;
-    margin-bottom: 4px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(to right, var(--red), var(--gold));
-    border-radius: 4px;
-    transition: width 0.5s ease;
-  }
-
-  .progress-label {
-    display: flex;
-    justify-content: space-between;
+    padding: 2px 8px;
     font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 20px;
+    font-weight: 500;
+    white-space: nowrap;
   }
 
-  /* ── 导航按钮 ── */
-  .nav-btns {
+  /* 注意事项 */
+  .tips-list { list-style: none; }
+  .tips-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+    color: #555;
     display: flex;
-    gap: 10px;
-    margin-top: 28px;
-    justify-content: flex-end;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .tips-list li:last-child { border-bottom: none; }
+  .tip-icon {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: #e8f2fc;
+    color: #1a6fa8;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
   }
 
-  .btn {
-    padding: 10px 22px;
-    border-radius: 24px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
+  /* 航班卡片 */
+  .flight-card {
+    background: #f8fcff;
+    border: 1px solid #c5def4;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .flight-row {
     display: flex;
     align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
+    gap: 16px;
+    flex-wrap: wrap;
   }
-
-  .btn-prev {
-    background: #fff;
-    color: var(--red);
-    border: 1.5px solid var(--red);
+  .flight-city {
+    text-align: center;
+    min-width: 60px;
   }
-
-  .btn-prev:hover { background: #fff5f5; }
-
-  .btn-next {
-    background: linear-gradient(135deg, var(--red), var(--red-light));
-    color: #fff;
-    box-shadow: 0 3px 12px rgba(192,57,43,0.35);
+  .flight-city .city-code {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
   }
-
-  .btn-next:hover { transform: translateY(-1px); box-shadow: 0 5px 18px rgba(192,57,43,0.4); }
-
-  .btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none !important; }
-
-  /* ── 底部页码 ── */
-  .page-indicator {
+  .flight-city .city-name {
+    font-size: 11px;
+    color: #888;
+  }
+  .flight-arrow {
+    flex: 1;
     display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 24px;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+  }
+  .flight-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #1a6fa8, #43b89c);
+    position: relative;
+    margin: 6px 0;
+  }
+  .flight-line::after {
+    content: '▶';
+    position: absolute;
+    right: -4px;
+    top: -7px;
+    color: #43b89c;
+    font-size: 12px;
+  }
+  .flight-info { font-size: 12px; color: #888; text-align: center; }
+  .flight-no { font-size: 13px; font-weight: 500; color: #1a6fa8; }
+  .flight-time { font-size: 15px; font-weight: 600; }
+  .flight-duration { font-size: 11px; color: #aaa; }
+  .flight-group { margin-bottom: 6px; font-size: 13px; color: #555; }
+
+  /* 费用估算 */
+  .budget-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+  }
+  .budget-row:last-child { border-bottom: none; }
+  .budget-name { color: #444; }
+  .budget-price { font-weight: 500; color: #222; }
+  .budget-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0 0;
+    border-top: 2px solid #e0e0e0;
+    margin-top: 4px;
+    font-weight: 600;
+    font-size: 14px;
   }
 
-  .dot-indicator {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--border);
-    transition: all 0.3s;
+  /* 打印按钮 */
+  .print-btn {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 32px;
+    padding: 10px 28px;
+    background: #1a6fa8;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    font-size: 14px;
     cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
   }
+  .print-btn:hover { background: #155a87; }
 
-  .dot-indicator.active {
-    background: var(--red);
-    width: 24px;
-    border-radius: 4px;
-  }
-
-  /* ── 响应式 ── */
   @media (max-width: 600px) {
-    .summary-grid { grid-template-columns: repeat(3, 1fr); }
-    .header-title h1 { font-size: 16px; }
-    .day-header { padding: 16px 16px; }
-    .day-header .day-emoji { font-size: 30px; }
-    .day-header .day-info h2 { font-size: 18px; }
-    .day-badge { display: none; }
-    .charge-table { font-size: 12px; }
-    .info-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero h1 { font-size: 22px; }
+    .hero-stats { gap: 16px; }
+    .flight-row { flex-direction: column; align-items: flex-start; }
+    .container { padding: 20px 14px; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    .day-content { display: block !important; }
+    .day-nav { display: none; }
+    .print-btn { display: none; }
+    .card { break-inside: avoid; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="header-title">
-      <span class="icon">🗺️</span>
+<!-- 封面 -->
+<div class="hero">
+  <div class="hero-badge">2026 公司团建攻略</div>
+  <h1>武汉 → 揭阳·南澳岛</h1>
+  <p>6月27日 — 6月30日 &nbsp;|&nbsp; 轻松休闲 · 滨海风情 · 潮汕美食</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">4</span><span class="label">天3晚</span></div>
+    <div class="hero-stat"><span class="num">12</span><span class="label">人出行</span></div>
+    <div class="hero-stat"><span class="num">2+1</span><span class="label">航班分批</span></div>
+    <div class="hero-stat"><span class="num">2</span><span class="label">个住宿点</span></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 行程概览 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-blue">📋</div>
       <div>
-        <h1>南昌城市漫步攻略</h1>
-        <p class="subtitle">武汉出发 · 自驾电车 · 4月24–26日</p>
+        <div class="card-title">行程总览</div>
+        <div class="card-subtitle">四天三夜完整安排</div>
       </div>
     </div>
-    <div class="tabs">
-      <div class="tab active" onclick="switchPage(0)">
-        🚗 出发
-        <span class="tab-date">4/24 周五</span>
-      </div>
-      <div class="tab" onclick="switchPage(1)">
-        🏛️ 游览
-        <span class="tab-date">4/25 周六</span>
-      </div>
-      <div class="tab" onclick="switchPage(2)">
-        🔙 返程
-        <span class="tab-date">4/26 周日</span>
-      </div>
-      <div class="tab" onclick="switchPage(3)">
-        📋 总览
-        <span class="tab-date">行程总表</span>
-      </div>
-    </div>
-  </div>
-</header>
-
-<div class="main">
-
-  <!-- ════════════════════════════════════
-       PAGE 0 · 4月24日 出发日
-  ════════════════════════════════════ -->
-  <div class="page active" id="page-0">
-
-    <div class="day-header">
-      <span class="day-emoji">🚗</span>
-      <div class="day-info">
-        <h2>4月24日 · 出发日</h2>
-        <p>武汉江汉区 → 南昌八一广场附近 · 夜驾·车内露营</p>
-      </div>
-      <span class="day-badge">全程约 360 km</span>
-    </div>
-
-    <!-- 充电规划卡 -->
-    <div class="charge-card">
-      <span class="charge-icon">⚡</span>
-      <div class="charge-content">
-        <h4>电车充电规划</h4>
-        <p>出发前满电，全程约355–375公里，建议在沿途服务区补一次电（如<strong>咸宁服务区</strong>或<strong>修水服务区</strong>），到达南昌时保留≥25%电量，到酒店附近或商圈充电桩慢充过夜。</p>
-        <table class="charge-table">
-          <tr><th>阶段</th><th>建议操作</th></tr>
-          <tr><td>📍 出发前</td><td>充满电（100%）再出发</td></tr>
-          <tr><td>🛣️ 武汉→咸宁段</td><td>约70km，进入高速后节能模式</td></tr>
-          <tr><td>⛽ 咸宁/修水服务区</td><td>视剩余电量决定是否充电（建议降至50%以下时补充）</td></tr>
-          <tr><td>🏁 到达南昌</td><td>找酒店或周边商圈充电桩，慢充过夜即可</td></tr>
-        </table>
-        <p style="margin-top:8px;font-size:12px;color:#888;">💡 建议用高德地图"沿途搜索充电站"提前标记，夜间高速车少，电耗约比白天低10%。</p>
-      </div>
-    </div>
-
-    <div class="timeline">
-
-      <!-- 出发 -->
-      <div class="event">
-        <div class="event-dot blue">🌙</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge blue-bg">21:00</span>
-            <div class="card-title">
-              <h3>从武汉江汉区出发</h3>
-              <p>夜驾高速 · 武深高速→昌九高速</p>
-            </div>
-            <div class="tags"><span class="tag drive">自驾</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">🛣️ 路线</div>
-                <p>武汉江汉区出发 → <strong>武深高速</strong> → 咸宁 → 九江 → <strong>昌九高速</strong> → 南昌八一广场附近</p>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">全程距离</div><div class="value">约 355–375 km</div></div>
-                <div class="info-item"><div class="label">预计耗时</div><div class="value">约 4–4.5 小时</div></div>
-                <div class="info-item"><div class="label">预计到达</div><div class="value">凌晨 1:00–1:30</div></div>
-                <div class="info-item"><div class="label">高速过路费</div><div class="value">约 165 元</div></div>
-              </div>
-              <div class="tip-box">✅ 晚上21点出发，高速车流极少，行驶顺畅；4月深夜气温约18°C，高速电耗低。记得保持精神，必要时服务区休息10分钟再走。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 到达 -->
-      <div class="event">
-        <div class="event-dot purple">🌃</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge purple-bg">凌晨 1:30</span>
-            <div class="card-title">
-              <h3>抵达南昌 · 赣江边停车</h3>
-              <p>选择停车点 · 准备车内露营</p>
-            </div>
-            <div class="tags"><span class="tag camp">露营</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">🏕️ 推荐停车露营地点</div>
-                <p>选择以下任一地点停车过夜：</p>
-                <div class="info-grid" style="margin-top:8px;">
-                  <div class="info-item"><div class="label">首选</div><div class="value">秋水广场停车场</div></div>
-                  <div class="info-item"><div class="label">备选</div><div class="value">抚河公园附近停车场</div></div>
-                  <div class="info-item"><div class="label">备选</div><div class="value">八一大桥赣江岸边停车</div></div>
-                  <div class="info-item"><div class="label">收费</div><div class="value">约 10–20元/夜</div></div>
-                </div>
-              </div>
-              <div class="section">
-                <div class="section-title">💡 车内露营贴士</div>
-              </div>
-              <div class="highlight-box">
-                🌙 <strong>4月南昌夜间约18–20°C</strong>，微开车窗即可舒适入睡<br>
-                🪟 建议备好遮阳帘/车窗遮光布，保证睡眠质量<br>
-                🛏️ 准备气垫或折叠睡垫，后备厢平铺效果最佳<br>
-                📱 到达后在地图APP搜索明日行程景点导航，提前收藏好
-              </div>
-              <div class="warn-box">⚠️ 停车时关好车窗缝隙，避免蚊虫进入；保管好贵重物品。秋水广场停车场安保较好，推荐首选。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="progress-bar"><div class="progress-fill" style="width:33%"></div></div>
-    <div class="progress-label"><span>第 1 天 / 共 3 天</span><span>33%</span></div>
-
-    <div class="nav-btns">
-      <button class="btn btn-next" onclick="switchPage(1)">第二天 游览日 ▶</button>
-    </div>
-    <div class="page-indicator">
-      <div class="dot-indicator active" onclick="switchPage(0)"></div>
-      <div class="dot-indicator" onclick="switchPage(1)"></div>
-      <div class="dot-indicator" onclick="switchPage(2)"></div>
-      <div class="dot-indicator" onclick="switchPage(3)"></div>
-    </div>
-  </div>
-
-
-  <!-- ════════════════════════════════════
-       PAGE 1 · 4月25日 游览主力日
-  ════════════════════════════════════ -->
-  <div class="page" id="page-1">
-
-    <div class="day-header">
-      <span class="day-emoji">🏛️</span>
-      <div class="day-info">
-        <h2>4月25日 · 游览日</h2>
-        <p>英雄城红色印记 + 千年名楼 + 赣江夜景</p>
-      </div>
-      <span class="day-badge">主力游览日</span>
-    </div>
-
-    <div class="summary-grid">
-      <div class="summary-item">
-        <div class="s-icon">🏛️</div>
-        <div class="s-label">景点数量</div>
-        <div class="s-value">4 处</div>
-      </div>
-      <div class="summary-item">
-        <div class="s-icon">🍜</div>
-        <div class="s-label">美食安排</div>
-        <div class="s-value">3 餐</div>
-      </div>
-      <div class="summary-item">
-        <div class="s-icon">💰</div>
-        <div class="s-label">预估花费</div>
-        <div class="s-value">约 200元</div>
-      </div>
-    </div>
-
-    <div class="timeline">
-
-      <!-- 早餐 -->
-      <div class="event">
-        <div class="event-dot orange">🍜</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge" style="background:linear-gradient(135deg,#e67e22,#f39c12)">07:30</span>
-            <div class="card-title">
-              <h3>早餐 · 拌粉 + 瓦罐汤</h3>
-              <p>南昌人的灵魂早餐 · 大士院街/绳金塔街区</p>
-            </div>
-            <div class="tags"><span class="tag food">美食</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">🍜 必吃组合</div>
-                <div class="food-list">
-                  <span class="food-item">南昌拌粉（酱香微辣）</span>
-                  <span class="food-item">瓦罐汤（小火慢煨）</span>
-                  <span class="food-item">油条 / 煎饼（可选）</span>
-                </div>
-              </div>
-              <div class="section">
-                <div class="section-title">📍 推荐地点</div>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">首选位置</div><div class="value">大士院街老字号</div></div>
-                <div class="info-item"><div class="label">备选位置</div><div class="value">绳金塔街区周边小店</div></div>
-                <div class="info-item"><div class="label">人均费用</div><div class="value">10–15 元</div></div>
-                <div class="info-item"><div class="label">用时</div><div class="value">约 30 分钟</div></div>
-              </div>
-              <div class="highlight-box">🌟 拌粉 + 瓦罐汤是南昌最经典的早餐搭配。拌粉酱香微辣，瓦罐汤鲜甜滋补，10多元就能吃得非常满足，性价比极高！</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 八一广场 -->
-      <div class="event">
-        <div class="event-dot">🏛️</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge">09:00</span>
-            <div class="card-title">
-              <h3>八一广场</h3>
-              <p>南昌标志性广场 · 红色地标打卡</p>
-            </div>
-            <div class="tags"><span class="tag free">免费</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">📌 景点介绍</div>
-                <p>始建于1952年，广场中心伫立着叶剑英元帅题写的<strong>八一南昌起义纪念塔</strong>，是南昌最标志性的城市地标。早晨市民散步晨练，生活气息浓郁，既是红色圣地，也是城市客厅。</p>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">门票</div><div class="value">免费开放</div></div>
-                <div class="info-item"><div class="label">建议游览</div><div class="value">约 30–40 分钟</div></div>
-                <div class="info-item"><div class="label">开放时间</div><div class="value">全天开放</div></div>
-                <div class="info-item"><div class="label">距离酒店</div><div class="value">步行可达</div></div>
-              </div>
-              <div class="tip-box">📸 拍照推荐：以纪念塔为背景，早晨光线柔和，是拍大片的好时机。广场南侧还可俯瞰城市全景。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 八一纪念馆 -->
-      <div class="event">
-        <div class="event-dot">🎖️</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge">09:45</span>
-            <div class="card-title">
-              <h3>八一南昌起义纪念馆</h3>
-              <p>深度红色文化体验 · 中山路380号</p>
-            </div>
-            <div class="tags"><span class="tag free">免费预约</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">📌 景点介绍</div>
-                <p>全面展示南昌起义这一开天辟地历史事件的纪念馆，文物丰富，展陈精良。馆内复原了起义指挥部旧址，历史感极强，是到南昌必来的红色打卡地。</p>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">门票</div><div class="value">免费（需预约）</div></div>
-                <div class="info-item"><div class="label">建议游览</div><div class="value">约 1.5 小时</div></div>
-                <div class="info-item"><div class="label">地址</div><div class="value">中山路380号</div></div>
-                <div class="info-item"><div class="label">预约方式</div><div class="value">微信公众号预约</div></div>
-              </div>
-              <div class="warn-box">⚠️ <strong>重要提醒：</strong>纪念馆需提前在微信公众号"八一南昌起义纪念馆"预约参观名额，<strong>今天就去预约明天（4月25日）上午的场次</strong>，名额有限，早预约早安心！</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 午餐 -->
-      <div class="event">
-        <div class="event-dot orange">🍽️</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge" style="background:linear-gradient(135deg,#e67e22,#f39c12)">11:30</span>
-            <div class="card-title">
-              <h3>午餐 · 万寿宫历史文化街区</h3>
-              <p>赣菜正宗体验 · 古建筑群中的烟火气</p>
-            </div>
-            <div class="tags"><span class="tag food">美食</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">🍽️ 必点菜品</div>
-                <div class="food-list">
-                  <span class="food-item">藜蒿炒腊肉（赣菜招牌）</span>
-                  <span class="food-item">南昌米粉</span>
-                  <span class="food-item">糊羹（甜辣口）</span>
-                  <span class="food-item">鄱阳湖鱼（时令鲜鱼）</span>
-                </div>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">人均</div><div class="value">30–50 元</div></div>
-                <div class="info-item"><div class="label">位置</div><div class="value">万寿宫街区</div></div>
-                <div class="info-item"><div class="label">步行距离</div><div class="value">纪念馆步行约10分钟</div></div>
-                <div class="info-item"><div class="label">用时</div><div class="value">约 1 小时</div></div>
-              </div>
-              <div class="highlight-box">🌟 万寿宫历史文化街区是南昌版"老汉口"，古建筑群保存完好，里面有各类赣菜馆和特色小店，饭后可顺便闲逛消食。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 滕王阁 -->
-      <div class="event">
-        <div class="event-dot gold">🗼</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge gold-bg">13:30</span>
-            <div class="card-title">
-              <h3>滕王阁 · 江南第一名楼</h3>
-              <p>登高望赣江 · "落霞与孤鹜齐飞"</p>
-            </div>
-            <div class="tags"><span class="tag paid">约50元</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">📌 景点介绍</div>
-                <p>"江南三大名楼"之一，因王勃《滕王阁序》闻名千古。现存建筑气势宏伟，登顶可俯瞰赣江两岸风光，对岸秋水广场清晰可见。下午光线充足，是拍摄赣江全景的最佳时段。</p>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">门票</div><div class="value">约 50 元/人</div></div>
-                <div class="info-item"><div class="label">建议游览</div><div class="value">约 1.5–2 小时</div></div>
-                <div class="info-item"><div class="label">开放时间</div><div class="value">约 8:00–18:00</div></div>
-                <div class="info-item"><div class="label">交通</div><div class="value">万寿宫打车/骑行约10分钟</div></div>
-              </div>
-              <div class="highlight-box">
-                🎭 <strong>免费背诗攻略：</strong>官方常态化活动——现场背诵《滕王阁序》全文，可获当日大门票一张（价值50元）！提前回家背熟，既省门票又留下难忘记忆～
-              </div>
-              <div class="tip-box">📸 摄影推荐：登顶后向西望赣江，黄昏前光线最美；向东可俯瞰南昌老城区全貌。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 赣江滨江步道 -->
-      <div class="event">
-        <div class="event-dot teal">🚶</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge teal-bg">15:30</span>
-            <div class="card-title">
-              <h3>赣江滨江步道漫步</h3>
-              <p>江边散步 · 放松休闲 · 眺望对岸</p>
-            </div>
-            <div class="tags"><span class="tag free">免费</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">🌊 体验描述</div>
-                <p>沿滕王阁旁的赣江边悠闲散步，江风习习，视野开阔。此时对岸的秋水广场和绿地双子塔清晰可见，是白天欣赏南昌城市天际线的最佳角度。</p>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">建议时长</div><div class="value">约 1 小时</div></div>
-                <div class="info-item"><div class="label">费用</div><div class="value">完全免费</div></div>
-                <div class="info-item"><div class="label">适合</div><div class="value">散步/拍照/发呆</div></div>
-                <div class="info-item"><div class="label">4月气温</div><div class="value">约 22–26°C</div></div>
-              </div>
-              <div class="tip-box">💡 可以在江边买一杯赣南脐橙汁，边走边喝，享受慢生活。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 入住 -->
-      <div class="event">
-        <div class="event-dot blue">🏨</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge blue-bg">16:30</span>
-            <div class="card-title">
-              <h3>入住酒店 · 休整</h3>
-              <p>放下行李，养精蓄锐迎接夜晚</p>
-            </div>
-            <div class="tags"><span class="tag tip">已预订</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="highlight-box">
-                🛁 入住后洗个澡、小憩一会儿，为晚上的音乐喷泉夜游蓄力。<br>
-                🔋 记得把电车插上充电桩慢充，明天返程前充满电再走。
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 晚餐 -->
-      <div class="event">
-        <div class="event-dot orange">🍽️</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge" style="background:linear-gradient(135deg,#e67e22,#f39c12)">18:30</span>
-            <div class="card-title">
-              <h3>晚餐 · 赣菜正餐</h3>
-              <p>八一广场/绳金塔附近餐厅</p>
-            </div>
-            <div class="tags"><span class="tag food">美食</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">🍽️ 推荐菜品</div>
-                <div class="food-list">
-                  <span class="food-item">南昌炒粉（干炒宽粉）</span>
-                  <span class="food-item">藜蒿炒腊肉</span>
-                  <span class="food-item">鄱阳湖鲜鱼</span>
-                  <span class="food-item">赣南小炒肉</span>
-                  <span class="food-item">瓦罐汤（晚餐版）</span>
-                </div>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">人均</div><div class="value">40–60 元</div></div>
-                <div class="info-item"><div class="label">用时</div><div class="value">约 1 小时</div></div>
-              </div>
-              <div class="tip-box">💡 饭后步行或打车前往秋水广场，提前10分钟到达，占好观看喷泉的最佳位置。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 秋水广场 -->
-      <div class="event">
-        <div class="event-dot">🌊</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge">20:30</span>
-            <div class="card-title">
-              <h3>秋水广场 · 音乐喷泉夜景</h3>
-              <p>亚洲最大音乐喷泉 · 每晚两场</p>
-            </div>
-            <div class="tags"><span class="tag free">免费</span><span class="tag night">夜游</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">🌊 景点介绍</div>
-                <p>位于赣江西岸，与滕王阁隔江相望，名称取自《滕王阁序》"<strong>秋水共长天一色</strong>"。亚洲最大音乐喷泉群，最高水柱达168米，配合灯光和音乐，视觉震撼极强。</p>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">门票</div><div class="value">完全免费</div></div>
-                <div class="info-item"><div class="label">第一场</div><div class="value">19:30（可错过）</div></div>
-                <div class="info-item"><div class="label">第二场</div><div class="value">20:45 ⭐推荐</div></div>
-                <div class="info-item"><div class="label">每场时长</div><div class="value">约 15–20 分钟</div></div>
-              </div>
-              <div class="highlight-box">
-                🌉 <strong>绝佳体验：</strong>站在秋水广场向东望，赣江对岸的滕王阁夜灯璀璨，喷泉水雾在灯光下折射出彩虹，配合《滕王阁序》的音乐，是南昌最浪漫的夜晚场景。
-              </div>
-              <div class="tip-box">✅ 时间安排：晚餐后（约20:30）出发，赶上20:45第二场，结束约21:10，步行或打车回酒店休息。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 返回酒店 -->
-      <div class="event">
-        <div class="event-dot blue">🌙</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge blue-bg">21:30</span>
-            <div class="card-title">
-              <h3>返回酒店 · 休息</h3>
-              <p>美好的一天圆满结束</p>
-            </div>
-            <div class="tags"></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="tip-box">
-                💤 今天的行程节奏舒适，没有赶路压力，安心入睡。<br>
-                🔋 确认电车充电状态，明天出发前充满电再走。
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="progress-bar"><div class="progress-fill" style="width:66%"></div></div>
-    <div class="progress-label"><span>第 2 天 / 共 3 天</span><span>66%</span></div>
-
-    <div class="nav-btns">
-      <button class="btn btn-prev" onclick="switchPage(0)">◀ 出发日</button>
-      <button class="btn btn-next" onclick="switchPage(2)">第三天 返程日 ▶</button>
-    </div>
-    <div class="page-indicator">
-      <div class="dot-indicator" onclick="switchPage(0)"></div>
-      <div class="dot-indicator active" onclick="switchPage(1)"></div>
-      <div class="dot-indicator" onclick="switchPage(2)"></div>
-      <div class="dot-indicator" onclick="switchPage(3)"></div>
-    </div>
-  </div>
-
-
-  <!-- ════════════════════════════════════
-       PAGE 2 · 4月26日 返程日
-  ════════════════════════════════════ -->
-  <div class="page" id="page-2">
-
-    <div class="day-header">
-      <span class="day-emoji">🔙</span>
-      <div class="day-info">
-        <h2>4月26日 · 返程日</h2>
-        <p>上午轻松逛 · 中午出发 · 傍晚到家</p>
-      </div>
-      <span class="day-badge">到家 ≤ 19:00</span>
-    </div>
-
-    <div class="timeline">
-
-      <!-- 早餐绳金塔 -->
-      <div class="event">
-        <div class="event-dot orange">🍜</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge" style="background:linear-gradient(135deg,#e67e22,#f39c12)">08:00</span>
-            <div class="card-title">
-              <h3>早餐 · 绳金塔街区</h3>
-              <p>老城区烟火早晨 · 最后一碗南昌炒粉</p>
-            </div>
-            <div class="tags"><span class="tag food">美食</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">🍜 早餐选择</div>
-                <div class="food-list">
-                  <span class="food-item">南昌炒粉（干炒/汤粉）</span>
-                  <span class="food-item">瓦罐汤</span>
-                  <span class="food-item">油炸饺子（当地特色）</span>
-                </div>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">人均</div><div class="value">10–15 元</div></div>
-                <div class="info-item"><div class="label">位置</div><div class="value">绳金塔街区小店</div></div>
-              </div>
-              <div class="highlight-box">🌅 早晨的绳金塔街区游客稀少，古塔配老街，是最能感受南昌烟火气的时刻。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 绳金塔 -->
-      <div class="event">
-        <div class="event-dot gold">🏮</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge gold-bg">09:00</span>
-            <div class="card-title">
-              <h3>绳金塔景区</h3>
-              <p>唐代千年古塔 · 赣派建筑街区</p>
-            </div>
-            <div class="tags"><span class="tag paid">低票价</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">📌 景点介绍</div>
-                <p>始建于唐天祐年间，迄今已有1100多年历史。古塔相传建塔时地下挖得铁函，内有绳和金各一束，因此得名"绳金塔"。现已成为融合赣派建筑、非遗文化的历史文化街区核心景点。</p>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">建议游览</div><div class="value">约 1 小时</div></div>
-                <div class="info-item"><div class="label">游客数量</div><div class="value">上午较少（推荐）</div></div>
-                <div class="info-item"><div class="label">特色</div><div class="value">古朴、安静、古建筑</div></div>
-              </div>
-              <div class="tip-box">💡 上午前往游客极少，可以安静地欣赏千年古塔，拍出无人空景。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 大士院街 -->
-      <div class="event">
-        <div class="event-dot teal">🛍️</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge teal-bg">10:00</span>
-            <div class="card-title">
-              <h3>大士院街 · 老城慢逛 + 购买特产</h3>
-              <p>南昌著名历史文化街区 · 带点特产回家</p>
-            </div>
-            <div class="tags"><span class="tag free">免费逛</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">🛍️ 推荐购买特产</div>
-                <div class="food-list">
-                  <span class="food-item">赣南脐橙（甜）</span>
-                  <span class="food-item">瓦罐汤料包</span>
-                  <span class="food-item">南昌特色零食</span>
-                  <span class="food-item">江西米饼/糕点</span>
-                </div>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">建议时长</div><div class="value">约 1 小时</div></div>
-                <div class="info-item"><div class="label">特色</div><div class="value">古色古香老街区</div></div>
-              </div>
-              <div class="highlight-box">🎁 最后的购物时光，帮家人/同事带点南昌特产，让这趟旅行的记忆延续下去。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 午餐出发 -->
-      <div class="event">
-        <div class="event-dot orange">🍱</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge" style="background:linear-gradient(135deg,#e67e22,#f39c12)">11:30</span>
-            <div class="card-title">
-              <h3>午餐 · 简单解决后启程</h3>
-              <p>就近用餐 · 12:00 正式出发返回武汉</p>
-            </div>
-            <div class="tags"><span class="tag food">美食</span><span class="tag drive">出发</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="info-grid">
-                <div class="info-item"><div class="label">就餐形式</div><div class="value">就近赣菜馆/米粉店</div></div>
-                <div class="info-item"><div class="label">人均</div><div class="value">20–35 元</div></div>
-                <div class="info-item"><div class="label">出发时间</div><div class="value">12:00 准时启程</div></div>
-              </div>
-              <div class="tip-box">☕ 饭后打包一杯南昌特色奶茶或青梅茶带走，高速路上慢慢享用。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 返程 -->
-      <div class="event">
-        <div class="event-dot blue">🚗</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge blue-bg">12:00</span>
-            <div class="card-title">
-              <h3>返程 · 南昌→武汉</h3>
-              <p>昌九高速→武深高速 · 预计约17:00到家</p>
-            </div>
-            <div class="tags"><span class="tag drive">返程</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="section">
-                <div class="section-title">🛣️ 返程路线</div>
-                <p>南昌市区出发 → <strong>昌九高速</strong> → 九江 → <strong>武深高速</strong> → 武汉江汉区</p>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">全程距离</div><div class="value">约 355–375 km</div></div>
-                <div class="info-item"><div class="label">预计耗时</div><div class="value">约 4–4.5 小时</div></div>
-                <div class="info-item"><div class="label">预计到达</div><div class="value">16:30–17:30 ✅</div></div>
-                <div class="info-item"><div class="label">远早于</div><div class="value">晚上 19:00 目标</div></div>
-              </div>
-              <div class="section">
-                <div class="section-title">⚡ 返程充电建议</div>
-              </div>
-              <div class="info-grid">
-                <div class="info-item"><div class="label">出发电量</div><div class="value">确保≥80%（提前充）</div></div>
-                <div class="info-item"><div class="label">中途充电</div><div class="value">咸宁/武汉南服务区</div></div>
-                <div class="info-item"><div class="label">充电时长</div><div class="value">快充约30–40分钟</div></div>
-              </div>
-              <div class="warn-box">⚠️ 4月26日周日下午可能有少量返程车流，建议12:00准时出发，高速路途中避开节假日峰值时段。如遇拥堵可提早30分钟出发。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 到家 -->
-      <div class="event">
-        <div class="event-dot green">🏠</div>
-        <div class="card" onclick="toggleCard(this)">
-          <div class="card-head">
-            <span class="time-badge green-bg">约 17:00</span>
-            <div class="card-title">
-              <h3>安全到家 · 武汉江汉区 🎉</h3>
-              <p>旅途圆满结束</p>
-            </div>
-            <div class="tags"><span class="tag tip">提前到家</span></div>
-            <span class="chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="card-body-inner">
-              <div class="highlight-box">
-                🎉 约17:00平安到家，远早于19:00的目标！<br><br>
-                回顾这趟旅行：英雄城的红色记忆、赣江的夜晚喷泉、一碗地道拌粉配瓦罐汤……南昌，不虚此行！
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-    <div class="progress-label"><span>第 3 天 / 共 3 天</span><span>100% 完成！🎉</span></div>
-
-    <div class="nav-btns">
-      <button class="btn btn-prev" onclick="switchPage(1)">◀ 游览日</button>
-      <button class="btn btn-next" onclick="switchPage(3)">查看行程总览 ▶</button>
-    </div>
-    <div class="page-indicator">
-      <div class="dot-indicator" onclick="switchPage(0)"></div>
-      <div class="dot-indicator" onclick="switchPage(1)"></div>
-      <div class="dot-indicator active" onclick="switchPage(2)"></div>
-      <div class="dot-indicator" onclick="switchPage(3)"></div>
-    </div>
-  </div>
-
-
-  <!-- ════════════════════════════════════
-       PAGE 3 · 总览
-  ════════════════════════════════════ -->
-  <div class="page" id="page-3">
-
-    <div class="day-header">
-      <span class="day-emoji">📋</span>
-      <div class="day-info">
-        <h2>行程总览</h2>
-        <p>三天行程一览 + 贴心提醒</p>
-      </div>
-      <span class="day-badge">3天2夜</span>
-    </div>
-
-    <div class="summary-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:20px;">
-      <div class="summary-item">
-        <div class="s-icon">🗺️</div>
-        <div class="s-label">总里程</div>
-        <div class="s-value">约 720 km</div>
-      </div>
-      <div class="summary-item">
-        <div class="s-icon">🏛️</div>
-        <div class="s-label">景点数量</div>
-        <div class="s-value">5 处</div>
-      </div>
-      <div class="summary-item">
-        <div class="s-icon">💰</div>
-        <div class="s-label">景点门票</div>
-        <div class="s-value">约 50 元</div>
-      </div>
-    </div>
-
     <table class="overview-table">
-      <tr><th>时间</th><th>内容</th><th>费用/备注</th></tr>
-      <tr><td><strong>4/24<br>21:00</strong></td><td>🚗 武汉江汉区出发，夜驾高速</td><td>高速费约165元<br>满电出发</td></tr>
-      <tr><td><strong>4/25<br>凌晨1:30</strong></td><td>🏕️ 抵达南昌，赣江边车内露营</td><td>停车约10–20元</td></tr>
-      <tr><td><strong>4/25<br>07:30</strong></td><td>🍜 早餐：拌粉+瓦罐汤（大士院）</td><td>人均约12元</td></tr>
-      <tr><td><strong>4/25<br>09:00</strong></td><td>🏛️ 八一广场打卡</td><td>免费</td></tr>
-      <tr><td><strong>4/25<br>09:45</strong></td><td>🎖️ 八一南昌起义纪念馆</td><td>免费（需预约）</td></tr>
-      <tr><td><strong>4/25<br>11:30</strong></td><td>🍽️ 午餐：万寿宫赣菜</td><td>人均约40元</td></tr>
-      <tr><td><strong>4/25<br>13:30</strong></td><td>🗼 滕王阁·登楼望赣江</td><td>约50元（可背诗免票）</td></tr>
-      <tr><td><strong>4/25<br>15:30</strong></td><td>🚶 赣江滨江步道散步</td><td>免费</td></tr>
-      <tr><td><strong>4/25<br>16:30</strong></td><td>🏨 入住酒店，休息充电</td><td>已预订</td></tr>
-      <tr><td><strong>4/25<br>18:30</strong></td><td>🍽️ 晚餐：赣菜正餐</td><td>人均约50元</td></tr>
-      <tr><td><strong>4/25<br>20:45</strong></td><td>🌊 秋水广场音乐喷泉（第二场）</td><td>免费</td></tr>
-      <tr><td><strong>4/26<br>08:00</strong></td><td>🍜 早餐：绳金塔街区炒粉</td><td>人均约12元</td></tr>
-      <tr><td><strong>4/26<br>09:00</strong></td><td>🏮 绳金塔景区游览</td><td>低票价</td></tr>
-      <tr><td><strong>4/26<br>10:00</strong></td><td>🛍️ 大士院街慢逛+买特产</td><td>自由消费</td></tr>
-      <tr><td><strong>4/26<br>11:30</strong></td><td>🍱 午餐·12:00启程返汉</td><td>人均约25元</td></tr>
-      <tr><td><strong>4/26<br>约17:00</strong></td><td>🏠 安全到家·武汉江汉区 🎉</td><td>远早于19:00 ✅</td></tr>
+      <tr>
+        <th>日期</th>
+        <th>主题</th>
+        <th>住宿</th>
+        <th>核心行程</th>
+      </tr>
+      <tr>
+        <td><span class="day-pill">D1</span><br><span style="color:#888;font-size:12px">6月27日 周六</span></td>
+        <td style="font-weight:500">飞往揭阳<br>入驻南澳岛</td>
+        <td>南澳晨夕屿海设计酒店</td>
+        <td>武汉出发 → 揭阳潮汕机场 → 包车进岛 → 晚餐海鲜 → 青澳湾夜色</td>
+      </tr>
+      <tr>
+        <td><span class="day-pill">D2</span><br><span style="color:#888;font-size:12px">6月28日 周日</span></td>
+        <td style="font-weight:500">南澳岛深度游</td>
+        <td>南澳晨夕屿海设计酒店</td>
+        <td>青澳湾沙滩 → 宋井风景区 → 总兵府 → 长尾山灯塔 → 渔港海鲜晚宴</td>
+      </tr>
+      <tr>
+        <td><span class="day-pill">D3</span><br><span style="color:#888;font-size:12px">6月29日 周一</span></td>
+        <td style="font-weight:500">离岛入市区</td>
+        <td>揭阳市区万达周边酒店</td>
+        <td>上午自由活动 → 中午离岛 → 揭阳市区美食探索 → 揭阳古城散步</td>
+      </tr>
+      <tr>
+        <td><span class="day-pill">D4</span><br><span style="color:#888;font-size:12px">6月30日 周二</span></td>
+        <td style="font-weight:500">返程武汉</td>
+        <td>—</td>
+        <td>上午自由/逛市区 → 购买特产 → 机场 → 返回武汉</td>
+      </tr>
     </table>
+  </div>
 
-    <!-- 出发前必做清单 -->
-    <div style="margin-top:24px;">
-      <div class="charge-card" style="background:linear-gradient(135deg,#fff8e1,#fff3e0);border-color:#ffe082;">
-        <span class="charge-icon">📝</span>
-        <div class="charge-content">
-          <h4 style="color:#e65100;">出发前必做清单</h4>
-          <div style="margin-top:8px;display:flex;flex-direction:column;gap:6px;font-size:13px;color:#555;">
-            <div>☑️ <strong>今天预约</strong>八一南昌起义纪念馆（微信公众号，选4月25日上午场次，<span style="color:#c0392b;font-weight:700;">免费但名额有限！</span>）</div>
-            <div>☑️ 提前下载好<strong>高德地图</strong>，搜索沿途充电站并收藏</div>
-            <div>☑️ 准备好车内露营装备（遮阳帘、气垫/睡垫）</div>
-            <div>☑️ 《滕王阁序》有兴致的话可以背一背，现场背诵免50元门票</div>
-            <div>☑️ 4月南昌白天22–27°C，带一件薄外套，晚间江边有风</div>
-            <div>☑️ 共享单车（美团/哈啰）覆盖完善，景点之间可骑行</div>
+  <!-- 航班信息 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-blue">✈️</div>
+      <div>
+        <div class="card-title">航班安排</div>
+        <div class="card-subtitle">往返武汉 ↔ 揭阳潮汕机场（SWA）</div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:500;color:#555;margin-bottom:10px">去程 · 6月27日</div>
+    <div class="flight-group">👥 第一批（约6人）· 早班</div>
+    <div class="flight-card">
+      <div class="flight-row">
+        <div class="flight-city">
+          <div class="flight-time">09:00</div>
+          <div class="city-code">WUH</div>
+          <div class="city-name">武汉天河</div>
+        </div>
+        <div class="flight-arrow">
+          <div class="flight-line"></div>
+          <div class="flight-info">
+            <div class="flight-no">直飞约2小时</div>
+            <div class="flight-duration">建议提前确认具体航班号</div>
           </div>
+        </div>
+        <div class="flight-city">
+          <div class="flight-time">约11:00</div>
+          <div class="city-code">SWA</div>
+          <div class="city-name">揭阳潮汕</div>
         </div>
       </div>
     </div>
 
-    <div class="nav-btns">
-      <button class="btn btn-prev" onclick="switchPage(2)">◀ 返程日</button>
-      <button class="btn btn-next" onclick="switchPage(0)">🔄 回到第一天</button>
+    <div class="flight-group" style="margin-top:10px">👥 第二批（约6人）· 晚班</div>
+    <div class="flight-card">
+      <div class="flight-row">
+        <div class="flight-city">
+          <div class="flight-time">11:00</div>
+          <div class="city-code">WUH</div>
+          <div class="city-name">武汉天河</div>
+        </div>
+        <div class="flight-arrow">
+          <div class="flight-line"></div>
+          <div class="flight-info">
+            <div class="flight-no">直飞约2小时</div>
+            <div class="flight-duration">建议提前确认具体航班号</div>
+          </div>
+        </div>
+        <div class="flight-city">
+          <div class="flight-time">约13:00</div>
+          <div class="city-code">SWA</div>
+          <div class="city-name">揭阳潮汕</div>
+        </div>
+      </div>
     </div>
-    <div class="page-indicator">
-      <div class="dot-indicator" onclick="switchPage(0)"></div>
-      <div class="dot-indicator" onclick="switchPage(1)"></div>
-      <div class="dot-indicator" onclick="switchPage(2)"></div>
-      <div class="dot-indicator active" onclick="switchPage(3)"></div>
+
+    <div style="font-size:13px;font-weight:500;color:#555;margin:16px 0 10px">返程 · 6月30日</div>
+    <div class="flight-group">👥 全员（12人）· 同一航班</div>
+    <div class="flight-card">
+      <div class="flight-row">
+        <div class="flight-city">
+          <div class="flight-time">13:30</div>
+          <div class="city-code">SWA</div>
+          <div class="city-name">揭阳潮汕</div>
+        </div>
+        <div class="flight-arrow">
+          <div class="flight-line"></div>
+          <div class="flight-info">
+            <div class="flight-no">直飞约2小时</div>
+            <div class="flight-duration">航站楼提前2小时到达</div>
+          </div>
+        </div>
+        <div class="flight-city">
+          <div class="flight-time">约15:30</div>
+          <div class="city-code">WUH</div>
+          <div class="city-name">武汉天河</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice orange">
+      <strong>⚠️ 航班提示：</strong>以上出发/到达时刻为预估，请出行前在携程/飞猪确认具体航班号和时刻。返程航班13:30起飞，<strong>需在11:00前抵达机场</strong>，从市区出发预留1.5-2小时车程。12人团建建议统一采购机票便于协调。
     </div>
   </div>
 
-</div><!-- /.main -->
+  <!-- 逐日行程 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-orange">🗓️</div>
+      <div>
+        <div class="card-title">逐日详细行程</div>
+        <div class="card-subtitle">点击日期切换查看</div>
+      </div>
+    </div>
+
+    <div class="day-nav">
+      <button class="day-btn active" onclick="showDay('d1', this)">D1 · 6/27 抵达日</button>
+      <button class="day-btn" onclick="showDay('d2', this)">D2 · 6/28 岛上深游</button>
+      <button class="day-btn" onclick="showDay('d3', this)">D3 · 6/29 离岛市区</button>
+      <button class="day-btn" onclick="showDay('d4', this)">D4 · 6/30 返程日</button>
+    </div>
+
+    <!-- D1 -->
+    <div class="day-content show" id="d1">
+      <div class="notice blue" style="margin-bottom:16px">
+        <strong>今日主题：</strong>武汉出发，分批抵达揭阳，包车直奔南澳岛，入住后轻松散步看海。
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">07:00 — 09:00</div>
+          <div class="tl-title">第一批出发 · 武汉天河机场</div>
+          <div class="tl-desc">提前2小时到机场办理值机托运。9:00起飞，约11:00抵达揭阳潮汕机场。</div>
+          <span class="tl-tag tag-transport">✈ 飞行约2h</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:00 — 11:00</div>
+          <div class="tl-title">第二批出发 · 武汉天河机场</div>
+          <div class="tl-desc">11:00起飞，约13:00抵达揭阳潮汕机场。</div>
+          <span class="tl-tag tag-transport">✈ 飞行约2h</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">11:00 — 13:00</div>
+          <div class="tl-title">第一批等候 / 在机场午餐</div>
+          <div class="tl-desc">第一批同学先在机场用午餐，等候第二批到达。可在机场餐厅吃潮汕云吞面、肠粉等小吃填肚子。</div>
+          <span class="tl-tag tag-meal">🍜 机场午饭</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">13:30</div>
+          <div class="tl-title">12人集合 · 包车前往南澳岛</div>
+          <div class="tl-desc">全员集合后乘包车前往南澳岛。揭阳潮汕机场→南澳岛约1.5小时，建议提前预定2辆7座商务车（每车约280-350元）或1辆12-15座中巴（约400-500元）。过南澳大桥进岛，沿途风景优美。</div>
+          <span class="tl-tag tag-transport">🚌 包车约1.5h</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">15:30</div>
+          <div class="tl-title">抵达南澳岛 · 办理入住</div>
+          <div class="tl-desc">入住「南澳晨夕屿海设计酒店」，整理行李，换上轻便装备。</div>
+          <span class="tl-tag tag-hotel">🏨 办理入住</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">16:30 — 18:00</div>
+          <div class="tl-title">青澳湾沙滩 · 自由漫步</div>
+          <div class="tl-desc">酒店距青澳湾沙滩步行可达，傍晚阳光柔和，在沙滩上散步吹海风，感受到岛的第一口气息。不需要安排活动，放松就好。</div>
+          <span class="tl-tag tag-activity">🌊 沙滩漫步</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">18:30</div>
+          <div class="tl-title">团建晚宴 · 海鲜大排档</div>
+          <div class="tl-desc">推荐「渔鲜潮食馆」或「然记卤鹅馆」。12人围坐，必点：白灼濑尿虾、清蒸石斑鱼、南澳鱼饺、炒薄壳米、卤水拼盘。海鲜按斤点，人均约80-120元，实惠鲜美。</div>
+          <span class="tl-tag tag-meal">🦞 海鲜团建晚宴</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">20:30</div>
+          <div class="tl-title">夜晚 · 青澳湾夜景</div>
+          <div class="tl-desc">饭后散步至青澳湾，看海上夜色，沙滩闲坐聊天。南澳夏夜凉爽，是团建放松聊天的好时机。早点休息，明天精力充沛再游玩。</div>
+          <span class="tl-tag tag-activity">🌙 夜游海湾</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- D2 -->
+    <div class="day-content" id="d2">
+      <div class="notice blue" style="margin-bottom:16px">
+        <strong>今日主题：</strong>南澳岛全日游，以轻松为主，上午景点参观，下午沙滩休闲，晚上渔港海鲜。
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">07:30 — 08:30</div>
+          <div class="tl-title">早餐 · 酒店或附近小店</div>
+          <div class="tl-desc">可在酒店用早餐，或步行至附近小店尝试本地早餐：香园肠粉（20年老店）、南澳紫菜粥、鱼蛋米线。</div>
+          <span class="tl-tag tag-meal">🍜 潮汕早餐</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:00 — 10:00</div>
+          <div class="tl-title">长尾山灯塔 · 打卡</div>
+          <div class="tl-desc">红色塔身配蓝天大海，是进岛后的标志性打卡点，背景是雄伟的南澳大桥。停留30分钟左右，拍照留念即可，不需要爬很多路。</div>
+          <span class="tl-tag tag-activity">📸 打卡灯塔</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">10:00 — 11:30</div>
+          <div class="tl-title">宋井风景区</div>
+          <div class="tl-desc">南宋末年的历史遗址，相传宋末宫廷来此时曾掘井取水。景区有古井、古碑，海边礁石风光壮阔。园区有遮阳处，散步舒适。门票约20元/人。</div>
+          <span class="tl-tag tag-activity">🏯 历史人文</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">11:30 — 13:00</div>
+          <div class="tl-title">午餐 · 南澳岛特色海鲜</div>
+          <div class="tl-desc">推荐「阿来小炒」（青澳湾附近）：南澳紫菜炒饭、炒薄壳、海鲜炒面是招牌。或选择「许大姐的菜」（后宅镇），本地家常海鲜小炒，实惠鲜美。</div>
+          <span class="tl-tag tag-meal">🍽️ 海鲜午餐</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">13:00 — 14:00</div>
+          <div class="tl-title">午休 · 回酒店小憩</div>
+          <div class="tl-desc">夏日午后阳光强，回酒店吹空调休息1小时，下午精力更好。团建以不累人为主，中午休息很重要。</div>
+          <span class="tl-tag tag-tip">💤 午休时间</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">14:30 — 16:30</div>
+          <div class="tl-title">青澳湾沙滩 · 自由活动</div>
+          <div class="tl-desc">青澳湾是南澳最美沙滩，沙质细腻、水质清澈。可游泳（有安全区域）、拍照、沙滩排球，或仅仅坐在沙滩椅上看海。有兴趣可体验香蕉船、海上摩托艇等水上项目（约60-100元/次）。</div>
+          <span class="tl-tag tag-activity">🏖️ 沙滩自由活动</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">17:00 — 17:30</div>
+          <div class="tl-title">总兵府 · 历史打卡</div>
+          <div class="tl-desc">南澳总兵府是广东唯一保存完好的总兵衙门旧址，有历史展览，了解南澳岛的海防历史。靠近后宅镇，步行或骑车可达。</div>
+          <span class="tl-tag tag-activity">🏛️ 历史建筑</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">18:30</div>
+          <div class="tl-title">晚餐 · 云澳渔港海鲜宴</div>
+          <div class="tl-desc">驱车约20分钟至云澳渔港，当天出海的最新鲜海产。推荐「南澳岛渔家宴」（云澳渔港旁）：活虾、花蟹、龙虾是当季招牌，可以大快朵颐。</div>
+          <span class="tl-tag tag-meal">🦀 渔港大餐</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">20:30</div>
+          <div class="tl-title">夜晚活动（自选）</div>
+          <div class="tl-desc">可选：①夜游钱澳湾灯塔（小清新灯塔，月色下格外好看）；②在酒店组织小游戏/团建活动；③沙滩烧烤（可提前联系摊贩）。以轻松为主。</div>
+          <span class="tl-tag tag-activity">🌟 夜间自选</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- D3 -->
+    <div class="day-content" id="d3">
+      <div class="notice blue" style="margin-bottom:16px">
+        <strong>今日主题：</strong>上午南澳岛自由活动，中午离岛前往揭阳市区，入驻万达周边酒店，探索揭阳美食。
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">07:30 — 08:30</div>
+          <div class="tl-title">早餐 · 告别海岛早晨</div>
+          <div class="tl-desc">在岛上最后一顿早饭，推荐到后宅镇早市体验当地生活气息：吃一碗正宗的南澳鱼粥，配炸薯条式鱼饺，体验渔村早市氛围。</div>
+          <span class="tl-tag tag-meal">🐟 渔村早餐</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:00 — 11:00</div>
+          <div class="tl-title">上午自由活动</div>
+          <div class="tl-desc">可选：①田仔地质公园（海边礁石，巨石与浪花，自然奇观）；②再逛一次青澳湾沙滩；③购买南澳特产（紫菜、鱿鱼干、海胆酱、腌渍海鲜）。建议11:00退房完毕。</div>
+          <span class="tl-tag tag-activity">🛍️ 自由&购物</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">11:00</div>
+          <div class="tl-title">退房 · 包车离岛</div>
+          <div class="tl-desc">统一退房后包车前往揭阳市区。南澳岛→揭阳市区约1小时15分钟，建议包车直达市区酒店（万达周边），比乘公交更省力。</div>
+          <span class="tl-tag tag-transport">🚌 包车约75分钟</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">12:30</div>
+          <div class="tl-title">午餐 · 揭阳市区正宗潮汕菜</div>
+          <div class="tl-desc">安顿行李后，附近午餐。推荐：揭阳正宗「普宁豆干」（软嫩内里×焦香外皮）、「椰子鸡火锅」或万达附近知名潮汕菜馆。人均30-60元，物美价廉。</div>
+          <span class="tl-tag tag-meal">🥘 潮汕午饭</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">14:00 — 17:00</div>
+          <div class="tl-title">揭阳古城慢游</div>
+          <div class="tl-desc">漫步揭阳老城区：①城隍庙（建于1281年，岭南古建筑代表）；②揭阳学宫（孔庙，明代古建）；③西湖公园（市中心绿洲，环湖散步）。全程步行为主，不累，有文化底蕴。</div>
+          <span class="tl-tag tag-activity">🏯 古城漫步</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">17:30</div>
+          <div class="tl-title">下午茶 · 揭阳特色糖水</div>
+          <div class="tl-desc">潮汕糖水是当地特色，必试：仙草冻、双皮奶、姜薯糖水、芋泥糯米。价格便宜（5-15元/份），可在老城区的糖水铺坐下来歇脚。</div>
+          <span class="tl-tag tag-meal">🍮 潮汕糖水</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">19:00</div>
+          <div class="tl-title">晚餐 · 揭阳卤鹅大餐</div>
+          <div class="tl-desc">揭阳卤鹅与汕头、潮州并称潮汕三大卤鹅流派。推荐「然记卤鹅馆揭阳分店」或老城区知名卤味馆：卤鹅、卤猪脚、卤蛋，配白粥、肠粉，是完整的潮汕卤味体验。人均50-80元。</div>
+          <span class="tl-tag tag-meal">🦆 卤鹅晚宴</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">21:00</div>
+          <div class="tl-title">夜市消遣</div>
+          <div class="tl-desc">万达周边有夜市，可购买手信（潮汕特产）、尝咸香饼、手打牛肉丸等小吃。明天需早起，建议22:30前回酒店休息。</div>
+          <span class="tl-tag tag-activity">🌃 夜市逛街</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- D4 -->
+    <div class="day-content" id="d4">
+      <div class="notice blue" style="margin-bottom:16px">
+        <strong>今日主题：</strong>返程日，上午轻松活动购特产，最晚11:00出发前往机场，13:30返回武汉。
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">07:30 — 08:30</div>
+          <div class="tl-title">早餐 · 潮汕肠粉早市</div>
+          <div class="tl-desc">最后一顿潮汕早餐，推荐到万达附近或老城区的肠粉店、米粉店。一碗拉肠（拉肠+蛋+香菇+猪肉）配一杯奶茶，完美收尾。</div>
+          <span class="tl-tag tag-meal">🍱 最后早餐</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:00 — 10:30</div>
+          <div class="tl-title">购买特产伴手礼</div>
+          <div class="tl-desc">推荐在当地超市或特产店统一采购：南澳紫菜（最佳手信）、鱿鱼干、贝壳糖、潮汕手打牛肉丸（冷冻真空）、腐乳（普宁豆腐乳）、杏仁饼等。万达附近有大型超市，品种齐全。</div>
+          <span class="tl-tag tag-activity">🛒 购买手信</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">11:00</div>
+          <div class="tl-title">统一出发 · 前往揭阳潮汕机场</div>
+          <div class="tl-desc">提前预定1辆15座大巴或2辆7座商务车，市区→揭阳潮汕机场约40-60分钟（正常路况）。务必留有余量，建议11:00出发，11:30-11:45抵达机场。</div>
+          <span class="tl-tag tag-transport">🚌 包车前往机场</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">11:45 — 13:30</div>
+          <div class="tl-title">机场集合 · 值机候机</div>
+          <div class="tl-desc">提前2小时到达办理值机、安检、托运。可在机场餐厅用午餐（候机室内外均有餐饮）。13:30准时起飞。</div>
+          <span class="tl-tag tag-transport">⏰ 值机候机</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">13:30</div>
+          <div class="tl-title">起飞 · 返回武汉</div>
+          <div class="tl-desc">预计约15:30抵达武汉天河机场。此次团建圆满结束！满载而归：海鲜的鲜、古城的古、海风的爽。</div>
+          <span class="tl-tag tag-transport">✈ 返程</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 交通全攻略 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-teal">🚗</div>
+      <div>
+        <div class="card-title">交通全攻略</div>
+        <div class="card-subtitle">12人团队全程交通安排</div>
+      </div>
+    </div>
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="info-label">✈ 武汉出发</div>
+        <div class="info-val">武汉天河国际机场</div>
+        <div class="info-sub">两批：9:00 + 11:00起飞</div>
+      </div>
+      <div class="info-box green">
+        <div class="info-label">🛬 揭阳落地</div>
+        <div class="info-val">揭阳潮汕国际机场</div>
+        <div class="info-sub">机场代码 SWA</div>
+      </div>
+      <div class="info-box orange">
+        <div class="info-label">🚌 机场→南澳岛</div>
+        <div class="info-val">包车直达（推荐）</div>
+        <div class="info-sub">约1.5小时 | 12-15座约400-500元</div>
+      </div>
+      <div class="info-box purple">
+        <div class="info-label">🚌 南澳岛→揭阳市区</div>
+        <div class="info-val">包车直达（推荐）</div>
+        <div class="info-sub">约1小时15分 | 费用同上</div>
+      </div>
+      <div class="info-box red">
+        <div class="info-label">🚌 市区→机场返程</div>
+        <div class="info-val">包车前往机场</div>
+        <div class="info-sub">约40-60分钟 | 11:00务必出发</div>
+      </div>
+      <div class="info-box">
+        <div class="info-label">🚐 岛内交通</div>
+        <div class="info-val">租骑电动车 / 滴滴</div>
+        <div class="info-sub">岛上路段短，电动车20元/天</div>
+      </div>
+    </div>
+
+    <div class="notice green" style="margin-top:16px">
+      <strong>💡 包车建议：</strong>全程推荐在当地包车平台（滴滴顺风车包车、淘宝搜「揭阳机场接送南澳岛」）或联系当地旅游公司，提前1-2天预定，12人建议1辆15座大巴（全程更便于集合），价格可谈，往返包天约500-700元。
+    </div>
+    <div class="notice orange" style="margin-top:10px">
+      <strong>🌉 过桥提醒：</strong>南澳大桥单程通行费（私家车约20元），包车费用一般已含，出发前确认司机是否含过桥费。
+    </div>
+  </div>
+
+  <!-- 餐饮推荐 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-green">🍽️</div>
+      <div>
+        <div class="card-title">餐饮推荐</div>
+        <div class="card-subtitle">南澳岛 + 揭阳市区 精选推荐</div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:500;color:#1a6fa8;margin-bottom:10px">📍 南澳岛推荐餐厅</div>
+    <div class="food-grid">
+      <div class="food-card">
+        <div class="food-name">渔鲜潮食馆</div>
+        <div class="food-type ft-dinner">晚餐 · 海鲜大排档</div>
+        <div class="food-desc">8年老字号，本地人最常去的海鲜小炒大排档。活虾、花蟹、石斑鱼、薄壳米，性价比极高。</div>
+        <div class="food-price">人均 ¥80-120</div>
+      </div>
+      <div class="food-card">
+        <div class="food-name">然记卤鹅馆</div>
+        <div class="food-type ft-dinner">晚餐 · 卤味+小炒</div>
+        <div class="food-desc">南澳必吃卤味，鹅翅软烂脱骨、鹅脚解馋、鹅肝绵密，还有本地特色小炒，口碑极好。</div>
+        <div class="food-price">人均 ¥60-90</div>
+      </div>
+      <div class="food-card">
+        <div class="food-name">阿来小炒</div>
+        <div class="food-type ft-lunch">午餐 · 本地炒菜</div>
+        <div class="food-desc">青澳湾附近，南澳紫菜炒饭是招牌，炒薄壳、海鲜炒面简单好吃，适合午餐。</div>
+        <div class="food-price">人均 ¥40-60</div>
+      </div>
+      <div class="food-card">
+        <div class="food-name">南澳岛渔家宴</div>
+        <div class="food-type ft-dinner">晚餐 · 渔港宴席</div>
+        <div class="food-desc">云澳渔港旁，当天出海最新鲜食材，活虾白灼、清蒸石斑、龙虾套餐，适合团建大桌。</div>
+        <div class="food-price">人均 ¥100-150</div>
+      </div>
+      <div class="food-card">
+        <div class="food-name">香园肠粉（早市）</div>
+        <div class="food-type ft-breakfast">早餐 · 肠粉小吃</div>
+        <div class="food-desc">20年老店，拉肠配各式配料，一份肠粉+一碗鱼粥，完美早餐组合，价格亲民。</div>
+        <div class="food-price">人均 ¥8-15</div>
+      </div>
+      <div class="food-card">
+        <div class="food-name">北回归线烘焙坊</div>
+        <div class="food-type ft-snack">下午茶 · 烘焙甜点</div>
+        <div class="food-desc">以本地特色食材为主打，面包、蛋糕品类丰富，沙滩游玩后的完美下午茶选择。</div>
+        <div class="food-price">人均 ¥20-35</div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:500;color:#1a6fa8;margin:20px 0 10px">📍 揭阳市区推荐餐厅</div>
+    <div class="food-grid">
+      <div class="food-card">
+        <div class="food-name">揭阳卤鹅馆（老城区）</div>
+        <div class="food-type ft-dinner">晚餐 · 潮汕卤味</div>
+        <div class="food-desc">揭阳卤鹅是一绝，卤鹅+卤猪脚+卤拼盘，配白粥，是完整的潮汕卤味体验，老城区多有名馆。</div>
+        <div class="food-price">人均 ¥50-80</div>
+      </div>
+      <div class="food-card">
+        <div class="food-name">普宁豆干小摊</div>
+        <div class="food-type ft-snack">小食 · 街头小吃</div>
+        <div class="food-desc">外酥里嫩的油炸豆干，一份才几块钱，是揭阳街头最常见也最好吃的小食，漫步时顺手拿一份。</div>
+        <div class="food-price">人均 ¥5-10</div>
+      </div>
+      <div class="food-card">
+        <div class="food-name">潮汕糖水铺</div>
+        <div class="food-type ft-snack">下午茶 · 甜品糖水</div>
+        <div class="food-desc">仙草冻、双皮奶、姜薯糖水、芋泥、绿豆爽……老城区巷弄里的糖水铺，消暑必备，很便宜。</div>
+        <div class="food-price">人均 ¥8-15</div>
+      </div>
+      <div class="food-card">
+        <div class="food-name">揭阳肠粉（万达周边）</div>
+        <div class="food-type ft-breakfast">早餐 · 肠粉粥铺</div>
+        <div class="food-desc">万达周边不乏连锁或本地肠粉店，早起来一份拉肠+潮汕糜（稀粥），体验地道早市文化。</div>
+        <div class="food-price">人均 ¥10-20</div>
+      </div>
+    </div>
+
+    <div class="notice green" style="margin-top:16px">
+      <strong>🦑 必尝食材：</strong>南澳紫菜、薄壳米、濑尿虾、石斑鱼、宅鱿干、海胆蒸蛋、南澳鱼饺、手打牛肉丸（潮汕特色）、潮汕卤水拼盘、芋泥糯米。
+    </div>
+  </div>
+
+  <!-- 景点介绍 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-purple">🗺️</div>
+      <div>
+        <div class="card-title">主要景点</div>
+        <div class="card-subtitle">以轻松为主，可量力选择</div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:500;color:#1a6fa8;margin-bottom:10px">🏝️ 南澳岛景点</div>
+    <div class="spot-grid">
+      <div class="spot-card">
+        <div class="spot-banner"></div>
+        <div class="spot-body">
+          <div class="spot-name">青澳湾沙滩</div>
+          <div class="spot-tag">必去 · 免费</div>
+          <div class="spot-desc">南澳最美沙滩，细白沙质，水质清澈，是游泳、玩水、拍照的最佳地点。傍晚看日落极美。</div>
+          <div class="spot-tip">⏰ 建议停留：1.5-2小时</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-banner" style="background:linear-gradient(90deg,#fb8c00,#ffd54f)"></div>
+        <div class="spot-body">
+          <div class="spot-name">长尾山灯塔</div>
+          <div class="spot-tag">打卡 · 免费</div>
+          <div class="spot-desc">红色塔身标志，背景是南澳大桥全景。进岛第一个打卡点，适合集体合影。</div>
+          <div class="spot-tip">⏰ 建议停留：30分钟</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-banner" style="background:linear-gradient(90deg,#8e24aa,#ce93d8)"></div>
+        <div class="spot-body">
+          <div class="spot-name">宋井风景区</div>
+          <div class="spot-tag">人文 · 约¥20/人</div>
+          <div class="spot-desc">南宋历史遗址，有古井古碑，海边礁石风光壮观，散步拍照两相宜。有遮阳处，不热。</div>
+          <div class="spot-tip">⏰ 建议停留：1-1.5小时</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-banner" style="background:linear-gradient(90deg,#2e7d32,#a5d6a7)"></div>
+        <div class="spot-body">
+          <div class="spot-name">南澳总兵府</div>
+          <div class="spot-tag">历史 · 约¥10/人</div>
+          <div class="spot-desc">广东唯一保存完好的总兵衙门旧址，了解南澳岛海防历史，有展览陈列，参观舒适。</div>
+          <div class="spot-tip">⏰ 建议停留：45分钟</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-banner" style="background:linear-gradient(90deg,#00838f,#80cbc4)"></div>
+        <div class="spot-body">
+          <div class="spot-name">钱澳湾灯塔</div>
+          <div class="spot-tag">小众 · 免费</div>
+          <div class="spot-desc">浅绿色塔顶，被誉为"小清新灯塔"，夜晚灯光映衬月色，拍照氛围感极佳。</div>
+          <div class="spot-tip">⏰ 建议停留：30分钟</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-banner" style="background:linear-gradient(90deg,#c62828,#ef9a9a)"></div>
+        <div class="spot-body">
+          <div class="spot-name">田仔地质公园</div>
+          <div class="spot-tag">自然 · 免费</div>
+          <div class="spot-desc">海边礁石公园，黑色巨石与海浪撞击壮观。适合清晨或傍晚散步，感受大自然力量。</div>
+          <div class="spot-tip">⏰ 建议停留：45分钟</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:500;color:#1a6fa8;margin:20px 0 10px">🏛️ 揭阳市区景点</div>
+    <div class="spot-grid">
+      <div class="spot-card">
+        <div class="spot-banner" style="background:linear-gradient(90deg,#1565c0,#90caf9)"></div>
+        <div class="spot-body">
+          <div class="spot-name">揭阳学宫（孔庙）</div>
+          <div class="spot-tag">历史 · 约¥20/人</div>
+          <div class="spot-desc">明代古建筑，岭南地区保存最完好的孔庙之一，红墙绿瓦，适合文化探访。</div>
+          <div class="spot-tip">⏰ 建议停留：45分钟</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-banner" style="background:linear-gradient(90deg,#e65100,#ffcc80)"></div>
+        <div class="spot-body">
+          <div class="spot-name">揭阳城隍庙</div>
+          <div class="spot-tag">人文 · 免费</div>
+          <div class="spot-desc">建于1281年，岭南古建筑代表，香火旺盛，彩绘精美，附近有老街老店。</div>
+          <div class="spot-tip">⏰ 建议停留：30分钟</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-banner" style="background:linear-gradient(90deg,#4caf50,#c8e6c9)"></div>
+        <div class="spot-body">
+          <div class="spot-name">揭阳西湖公园</div>
+          <div class="spot-tag">休闲 · 免费</div>
+          <div class="spot-desc">城市中心绿洲，湖面宽阔，可环湖散步，有茶馆凉亭，傍晚市民遛弯好去处，非常轻松。</div>
+          <div class="spot-tip">⏰ 建议停留：1小时</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 注意事项 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-red">⚠️</div>
+      <div>
+        <div class="card-title">重要提示 & 注意事项</div>
+        <div class="card-subtitle">团建顺利出行必看</div>
+      </div>
+    </div>
+    <ul class="tips-list">
+      <li>
+        <div class="tip-icon">1</div>
+        <div><strong>包车提前预定：</strong>12人团队建议提前1-2天在淘宝或滴滴包车平台预定「揭阳机场→南澳岛」的15座大巴，旺季可能车源紧张。</div>
+      </li>
+      <li>
+        <div class="tip-icon">2</div>
+        <div><strong>返程预留时间：</strong>6月30日返程航班13:30，务必<strong>不晚于11:00从市区出发</strong>前往机场，建议10:45出发更安全。</div>
+      </li>
+      <li>
+        <div class="tip-icon">3</div>
+        <div><strong>防晒防暑：</strong>6月末揭阳气温30-35°C，紫外线强，备足防晒霜、太阳镜、遮阳帽。沙滩活动尽量安排在16:00后，避开正午。</div>
+      </li>
+      <li>
+        <div class="tip-icon">4</div>
+        <div><strong>海鲜注意：</strong>海鲜一次性不要贪多，部分人可能对特定贝类海鲜过敏，点餐前互相确认禁忌食物。</div>
+      </li>
+      <li>
+        <div class="tip-icon">5</div>
+        <div><strong>游泳安全：</strong>青澳湾设有安全游泳区域，请在标识范围内游泳，有基础游泳能力再下水，集体行动不落单。</div>
+      </li>
+      <li>
+        <div class="tip-icon">6</div>
+        <div><strong>特产购买：</strong>南澳紫菜是最推荐的手信，在岛上购买比机场便宜；牛肉丸选真空冷冻装可带回；避免购买未明码标价的海鲜干货。</div>
+      </li>
+      <li>
+        <div class="tip-icon">7</div>
+        <div><strong>岛内通讯：</strong>南澳岛4G信号基本覆盖，但云澳等偏远区域可能有弱信号，提前下载好地图离线包。</div>
+      </li>
+      <li>
+        <div class="tip-icon">8</div>
+        <div><strong>6月天气：</strong>6月末揭阳可能有阵雨，建议带折叠伞，沿海地区早晚有海风，带一件薄外套晚上沙滩用。</div>
+      </li>
+      <li>
+        <div class="tip-icon">9</div>
+        <div><strong>统一行动：</strong>12人团队建议建群共享位置，包车乘车分配提前安排，避免候机/包车等待时间过长。</div>
+      </li>
+      <li>
+        <div class="tip-icon">10</div>
+        <div><strong>以不累为主：</strong>全程景点不强制打卡，中午安排午休，以舒适轻松为第一原则，团建重在氛围而非景点数量。</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 费用估算 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-orange">💰</div>
+      <div>
+        <div class="card-title">人均费用参考</div>
+        <div class="card-subtitle">不含机票和住宿（已提前安排）</div>
+      </div>
+    </div>
+    <div class="budget-row">
+      <span class="budget-name">机场→南澳岛包车（均摊）</span>
+      <span class="budget-price">约 ¥35-45</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-name">南澳岛→揭阳市区包车（均摊）</span>
+      <span class="budget-price">约 ¥35-45</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-name">市区→机场包车（均摊）</span>
+      <span class="budget-price">约 ¥30-40</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-name">岛内交通（电动车/滴滴）</span>
+      <span class="budget-price">约 ¥20-40</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-name">餐饮（含6顿正餐+早餐+零食）</span>
+      <span class="budget-price">约 ¥350-500</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-name">景点门票（宋井+总兵府+学宫）</span>
+      <span class="budget-price">约 ¥50-60</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-name">特产手信（自选）</span>
+      <span class="budget-price">约 ¥50-200</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-name">水上活动（自选，可跳过）</span>
+      <span class="budget-price">约 ¥0-100</span>
+    </div>
+    <div class="budget-total">
+      <span>人均大约合计（不含机票和住宿）</span>
+      <span style="color:#e53935">¥570 - ¥980</span>
+    </div>
+    <div class="notice blue" style="margin-top:12px">
+      说明：以上为参考估算，实际消费因个人食量和消费习惯有所差异。海鲜价格随季节浮动，点餐时建议先询价。
+    </div>
+  </div>
+
+  <!-- 行程建议打印 -->
+  <button class="print-btn" onclick="window.print()">🖨️ 打印 / 保存为 PDF</button>
+
+</div>
 
 <script>
-  const TOTAL = 4;
-  let current = 0;
-
-  function switchPage(idx) {
-    // 隐藏当前页
-    document.getElementById('page-' + current).classList.remove('active');
-    document.querySelectorAll('.tab')[current].classList.remove('active');
-
-    // 显示目标页
-    current = idx;
-    document.getElementById('page-' + current).classList.add('active');
-    document.querySelectorAll('.tab')[current].classList.add('active');
-
-    // 更新所有页面内的点指示器
-    document.querySelectorAll('.dot-indicator').forEach((el, i) => {
-      // 每4个一组
-      const group = Math.floor(i / TOTAL);
-      const pos = i % TOTAL;
-      el.classList.toggle('active', pos === current);
-    });
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  function showDay(id, btn) {
+    document.querySelectorAll('.day-content').forEach(el => el.classList.remove('show'));
+    document.querySelectorAll('.day-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('show');
+    btn.classList.add('active');
   }
-
-  function toggleCard(card) {
-    const body = card.querySelector('.card-body');
-    const chevron = card.querySelector('.chevron');
-    const isOpen = body.classList.contains('open');
-
-    body.classList.toggle('open', !isOpen);
-    chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-    card.querySelector('.event-dot') && (card.parentElement.querySelector('.event-dot').style.transform = isOpen ? 'scale(1)' : 'scale(1.15)');
-  }
-
-  // 键盘左右切换
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' && current < TOTAL - 1) switchPage(current + 1);
-    if (e.key === 'ArrowLeft' && current > 0) switchPage(current - 1);
-  });
-
-  // 触摸滑动切换
-  let touchStartX = 0;
-  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  document.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 60) {
-      if (dx < 0 && current < TOTAL - 1) switchPage(current + 1);
-      if (dx > 0 && current > 0) switchPage(current - 1);
-    }
-  }, { passive: true });
 </script>
 
 </body>
